@@ -4,6 +4,9 @@ COPY . ./
 
 RUN apk update
 RUN apk add git
+RUN git config --global user.name "nyanki"
+RUN git config --global user.email "nyanki@example.com"
+
 RUN yarn install
 
 EXPOSE 3000
