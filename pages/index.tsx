@@ -2,6 +2,8 @@ import React from 'react';
 import type { NextPage } from 'next/types';
 import Head from 'next/head';
 import Image from 'next/image';
+
+import WordForm from '../components/WordForm';
 import styles from '../styles/Home.module.css';
 
 const Index: NextPage = () => (
@@ -16,6 +18,7 @@ const Index: NextPage = () => (
       <h1 className={styles.title}>
         Welcome to Nyanki!
       </h1>
+      <WordForm />
     </main>
 
     <footer className={styles.footer}>
