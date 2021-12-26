@@ -3,8 +3,10 @@ import type { NextPage } from 'next/types';
 import Head from 'next/head';
 import Image from 'next/image';
 
+import { Box, Text } from '@chakra-ui/react';
 import WordForm from '../components/WordForm';
 import styles from '../styles/Home.module.css';
+import Main from '../components/layout/Main';
 
 const Index: NextPage = () => (
   <div className={styles.container}>
@@ -14,12 +16,10 @@ const Index: NextPage = () => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <main className={styles.main}>
-      <h1 className={styles.title}>
-        Welcome to Nyanki!
-      </h1>
+    <Main>
+      <Text fontSize="6xl">Welcome to Nyanki!</Text>
       <WordForm />
-    </main>
+    </Main>
 
     <footer className={styles.footer}>
       <a

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Box, Input } from '@chakra-ui/react';
+import { Flex, Input } from '@chakra-ui/react';
 
 const WordForm: React.VFC = () => (
-  <Box>
+  <Flex>
     <Input variant="outline" placeholder="word" />
     <Input variant="outline" placeholder="meaning" />
-  </Box>
+  </Flex>
 );
 
 export default WordForm;
