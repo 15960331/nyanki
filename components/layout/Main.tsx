@@ -1,11 +1,12 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
+import { NextPage } from 'next';
 
 type Props = {
   children: React.ReactNode;
 };
 
-const Main: React.VFC<Props> = ({ children }) => (
+const Main: NextPage<Props> = ({ children }) => (
   <Box
     as="main"
     minH="100vh"
