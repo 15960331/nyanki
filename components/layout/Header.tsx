@@ -6,7 +6,11 @@ import {
 import { ChevronDownIcon } from '@chakra-ui/icons';
 
 const Main: NextPage = () => (
-  <Box as="header" p={1}>
+  <Box
+    p={1}
+    minH="5vh" // Header 5 + Main 95
+    bg="gray.700"
+  >
     <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
         Word

@@ -8,9 +8,7 @@ type Props = {
 
 const Main: NextPage<Props> = ({ children }) => (
   <Box
-    as="main"
-    minH="100vh"
-    padding="4rem 0"
+    minH="95vh" // Header 5 + Main 95
     flex="1"
     display="flex"
     flexDirection="column"
