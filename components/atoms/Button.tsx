@@ -3,17 +3,18 @@ import { NextPage } from 'next';
 import { Button as Button1, ButtonProps, ComponentWithAs } from '@chakra-ui/react';
 
 type Props = ComponentWithAs<'button', ButtonProps> & {
-  labelText: string;
+  rightIcon?: React.ReactElement;
 };
 
 const Button: NextPage<Props> = (props) => {
-  const { children, ...buttonProps } = props;
+  const { rightIcon, children, ...buttonProps } = props;
 
   return (
     <Button1
-      colorScheme="facebook"
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...buttonProps}
+      rightIcon={rightIcon}
+      colorScheme="facebook"
     >
       {children}
     </Button1>

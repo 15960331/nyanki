@@ -1,12 +1,13 @@
 import React from 'react';
+import { NextPage } from 'next';
 import { Flex } from '@chakra-ui/react';
 
 import Input from './atoms/Input';
 
-const WordForm: React.VFC = () => (
+const WordForm: NextPage = () => (
   <Flex>
-    <Input variant="outline" placeholder="word" />
-    <Input variant="outline" placeholder="meaning" />
+    <Input placeholder="word" />
+    <Input placeholder="meaning" />
   </Flex>
 );
 
