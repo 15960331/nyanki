@@ -1,5 +1,7 @@
 import React from 'react';
-import { Flex, Input } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
+
+import Input from './atoms/Input';
 
 const WordForm: React.VFC = () => (
   <Flex>
