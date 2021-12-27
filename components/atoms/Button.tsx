@@ -1,8 +1,8 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { Button as Button1, ButtonProps, ComponentWithAs } from '@chakra-ui/react';
+import { Button as Button1 } from '@chakra-ui/react';
 
-type Props = ComponentWithAs<'button', ButtonProps> & {
+type Props = JSX.IntrinsicElements['button'] & {
   rightIcon?: React.ReactElement;
 };
 
