@@ -6,6 +6,7 @@ type Props = ComponentWithAs<'button', ButtonProps> & {
   rightIcon?: React.ReactElement;
 };
 
+// u cant put this on MenuButton, dropdown will be broken
 const Button: NextPage<Props> = (props) => {
   const { rightIcon, children, ...buttonProps } = props;
 
