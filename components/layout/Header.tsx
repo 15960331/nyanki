@@ -12,7 +12,6 @@ export const Header: NextPage = () => {
   return (
     <Box
       p={1}
-      minH="5vh" // Header 5 + Main 95
       bg="gray.700"
       display="flex"
       alignItems="center"

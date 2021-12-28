@@ -8,13 +8,14 @@ type Props = {
 
 export const Main: NextPage<Props> = ({ children }) => (
   <Box
-    minH="95vh" // Header 5 + Main 95
     flex="1"
     display="flex"
     flexDirection="column"
     alignItems="center"
     bg="gray.500"
   >
-    {children}
+    <Box p={4}>
+      {children}
+    </Box>
   </Box>
 );
