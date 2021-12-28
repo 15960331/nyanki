@@ -1,10 +1,10 @@
 import React from 'react';
 import type { NextPage } from 'next/types';
 
-import { Text } from '@chakra-ui/react';
+import WordForm from '../components/WordForm';
 
-const Index: NextPage = () => (
-  <Text fontSize="6xl">Word page</Text>
+const Page: NextPage = () => (
+  <WordForm />
 );
 
-export default Index;
+export default Page;

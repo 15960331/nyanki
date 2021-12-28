@@ -4,9 +4,9 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Box, Menu, Text } from '@chakra-ui/react';
 
-import Button from '../atoms/Button';
+import { Button } from '../Button';
 
-const Main: NextPage = () => {
+export const Header: NextPage = () => {
   const router = useRouter();
 
   return (
@@ -38,5 +38,3 @@ const Main: NextPage = () => {
     </Box>
   );
 };
-
-export default Main;

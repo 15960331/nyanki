@@ -4,8 +4,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import Header from '../components/layout/Header';
-import Main from '../components/layout/Main';
+import { Layout } from '../components/layout';
 import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
@@ -16,10 +15,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <ChakraProvider>
-      <Header />
-      <Main>
+      <Layout>
         <Component {...pageProps} />
-      </Main>
+      </Layout>
     </ChakraProvider>
   </>
 );

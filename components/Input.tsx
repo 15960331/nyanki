@@ -4,7 +4,7 @@ import { Input as Input1 } from '@chakra-ui/react';
 
 type Props = JSX.IntrinsicElements['input'];
 
-const Input: NextPage<Props> = (props) => {
+export const Input: NextPage<Props> = (props) => {
   const { children, size, ...inputProps } = props;
 
   return (
@@ -20,5 +20,3 @@ const Input: NextPage<Props> = (props) => {
     </Input1>
   );
 };
-
-export default Input;

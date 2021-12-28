@@ -8,7 +8,7 @@ type Props = JSX.IntrinsicElements['button'] & {
 };
 
 // u cant put this on MenuButton, dropdown will be broken
-const Button: NextPage<Props> = (props) => {
+export const Button: NextPage<Props> = (props) => {
   const {
     rightIcon, isActive, children, ...buttonProps
   } = props;
@@ -24,5 +24,3 @@ const Button: NextPage<Props> = (props) => {
     </Button1>
   );
 };
-
-export default Button;
