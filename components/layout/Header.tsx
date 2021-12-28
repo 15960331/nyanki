@@ -1,5 +1,6 @@
 import React from 'react';
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { Box, Menu, Text } from '@chakra-ui/react';
 
 import Button from '../atoms/Button';
@@ -12,15 +13,23 @@ const Main: NextPage = () => (
     display="flex"
     alignItems="center"
   >
-    <Text as="span" fontSize="3xl" color="white" paddingX={6}>Nyanki</Text>
+    <Link href="/" passHref>
+      <Text as="a" fontSize="3xl" color="white" marginX={6}>Nyanki</Text>
+    </Link>
     <Menu>
       <Box mr={2}>
-        <Button>Word</Button>
+        <Link href="/word" passHref>
+          <Button>Word</Button>
+        </Link>
       </Box>
       <Box mr={2}>
-        <Button>Idiom</Button>
+        <Link href="/idiom" passHref>
+          <Button>Idiom</Button>
+        </Link>
       </Box>
-      <Button>Difference</Button>
+      <Link href="/difference" passHref>
+        <Button>Difference</Button>
+      </Link>
     </Menu>
   </Box>
 );
