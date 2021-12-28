@@ -4,18 +4,21 @@ import { Button as Button1 } from '@chakra-ui/react';
 
 type Props = JSX.IntrinsicElements['button'] & {
   rightIcon?: React.ReactElement;
+  isActive?: boolean;
 };
 
 // u cant put this on MenuButton, dropdown will be broken
 const Button: NextPage<Props> = (props) => {
-  const { rightIcon, children, ...buttonProps } = props;
+  const {
+    rightIcon, isActive, children, ...buttonProps
+  } = props;
 
   return (
     <Button1
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...buttonProps}
       rightIcon={rightIcon}
-      colorScheme="facebook"
+      colorScheme={isActive ? 'purple' : 'facebook'}
     >
       {children}
     </Button1>
