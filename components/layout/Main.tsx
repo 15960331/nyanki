@@ -8,14 +8,10 @@ type Props = {
 
 export const Main: NextPage<Props> = ({ children }) => (
   <Box
-    flex="1"
     display="flex"
     flexDirection="column"
     alignItems="center"
-    bg="gray.500"
   >
-    <Box p={4}>
-      {children}
-    </Box>
+    {children}
   </Box>
 );

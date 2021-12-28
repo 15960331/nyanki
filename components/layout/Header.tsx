@@ -11,9 +11,9 @@ export const Header: NextPage = () => {
 
   return (
     <Box
-      p={1}
-      bg="gray.700"
       display="flex"
+      flexDirection="row"
+      h="100%"
       alignItems="center"
     >
       <Link href="/" passHref>
