@@ -4,11 +4,9 @@ import { Flex } from '@chakra-ui/react';
 
 import { Input } from './Input';
 
-const WordForm: NextPage = () => (
+export const WordForm: NextPage = () => (
   <Flex>
     <Input placeholder="word" />
     <Input placeholder="meaning" />
   </Flex>
 );
-
-export default WordForm;
