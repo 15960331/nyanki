@@ -7,6 +7,7 @@ type Props = JSX.IntrinsicElements['button'] & {
   isActive?: boolean;
 };
 
+// TODO: gives ref
 // u cant put this on MenuButton, dropdown will be broken
 export const Button: NextPage<Props> = (props) => {
   const {

@@ -4,6 +4,7 @@ import { Input as Input1 } from '@chakra-ui/react';
 
 type Props = JSX.IntrinsicElements['input'];
 
+// TODO: gives ref
 export const Input: NextPage<Props> = (props) => {
   const { children, size, ...inputProps } = props;
 
