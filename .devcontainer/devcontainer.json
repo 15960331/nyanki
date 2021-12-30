@@ -8,6 +8,7 @@
 	"extensions": [
 		"mhutchie.git-graph",
 		"dbaeumer.vscode-eslint",
+		"gruntfuggly.todo-tree",
 	]
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
