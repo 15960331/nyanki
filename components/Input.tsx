@@ -1,11 +1,7 @@
-import React from 'react';
-import { NextPage } from 'next';
+import React, { forwardRef } from 'react';
 import { Input as Input1, InputProps } from '@chakra-ui/react';
 
-type Props = JSX.IntrinsicElements['input'] & InputProps;
-
-// TODO: gives ref
-export const Input: NextPage<Props> = (props) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { children, ...inputProps } = props;
 
   return (
@@ -16,8 +12,9 @@ export const Input: NextPage<Props> = (props) => {
       color="gray.700"
       bgColor="white"
       size="md"
+      ref={ref}
     >
       {children}
     </Input1>
   );
-};
+});
