@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { User } from '@supabase/supabase-js';
 
-import { supabase } from '../utils/supabaseClient';
+import { useUser } from '../providers';
 
 // TODO: add logic that goes back to a page you were at after logged in
 export const useProtectPage = () => {
   const router = useRouter();
-  const [user, setUser] = useState<User>();
+  const { user } = useUser();
+  const [isLogined, setIsLogined] = useState(false);
 
   useEffect(() => {
-    const profile = supabase.auth.user();
-
-    if (!profile) {
+    if (!user) {
       router.push('/login');
-      return;
+      setIsLogined(false);
     }
 
-    setUser(profile);
-  }, [router]);
+    setIsLogined(true);
+  }, [user, router]);
 
-  return { user } as const;
+  return { isLogined } as const;
 };

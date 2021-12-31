@@ -5,9 +5,9 @@ import { Text, Spinner } from '@chakra-ui/react';
 import { useProtectPage } from '../hooks/useProtectPage';
 
 const Page: NextPage = () => {
-  const { user } = useProtectPage();
+  const { isLogined } = useProtectPage();
 
-  return !user
+  return !isLogined
     ? <Spinner />
     : <Text fontSize="6xl">Idiom page</Text>;
 };

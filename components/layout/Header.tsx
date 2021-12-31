@@ -3,13 +3,16 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import {
-  Flex, Box, Menu, Text, Spacer,
+  Flex, Menu, Text, Spacer,
 } from '@chakra-ui/react';
 
 import { Button } from '../Button';
+import { LogoutButton } from '../logoutButton';
+import { useUser } from '../../providers';
 
 export const Header: NextPage = () => {
   const router = useRouter();
+  const { user } = useUser();
 
   return (
     <Flex
@@ -22,28 +25,56 @@ export const Header: NextPage = () => {
         <Text as="a" fontSize="3xl" color="white" mr={4}>Nyanki</Text>
       </Link>
       <Menu>
-        <Box mr={2}>
-          <Link href="/word" passHref>
-            <Button isActive={router.pathname === '/word'}>Word</Button>
-          </Link>
-        </Box>
-        <Box mr={2}>
-          <Link href="/idiom" passHref>
-            <Button isActive={router.pathname === '/idiom'}>Idiom</Button>
-          </Link>
-        </Box>
+        <Link href="/word" passHref>
+          <Button
+            mr={2}
+            isActive={router.pathname === '/word'}
+            disabled={!user}
+          >
+            Word
+          </Button>
+        </Link>
+        <Link href="/idiom" passHref>
+          <Button
+            mr={2}
+            isActive={router.pathname === '/idiom'}
+            disabled={!user}
+          >
+            Idiom
+          </Button>
+        </Link>
         <Link href="/difference" passHref>
-          <Button isActive={router.pathname === '/difference'}>Difference</Button>
+          <Button
+            isActive={router.pathname === '/difference'}
+            disabled={!user}
+          >
+            Difference
+          </Button>
         </Link>
+
         <Spacer />
-        <Box mr={2}>
-          <Link href="/login" passHref>
-            <Button isActive={router.pathname === '/login'}>Login</Button>
-          </Link>
-        </Box>
-        <Link href="/register" passHref>
-          <Button isActive={router.pathname === '/register'}>Register</Button>
-        </Link>
+
+        {user
+          ? <LogoutButton />
+          : (
+            <>
+              <Link href="/login" passHref>
+                <Button
+                  mr={2}
+                  isActive={router.pathname === '/login'}
+                >
+                  Login
+                </Button>
+              </Link>
+              <Link href="/register" passHref>
+                <Button
+                  isActive={router.pathname === '/register'}
+                >
+                  Register
+                </Button>
+              </Link>
+            </>
+          )}
       </Menu>
     </Flex>
   );

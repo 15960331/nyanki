@@ -6,9 +6,9 @@ import { useProtectPage } from '../hooks/useProtectPage';
 import { WordForm } from '../components/WordForm';
 
 const Page: NextPage = () => {
-  const { user } = useProtectPage();
+  const { isLogined } = useProtectPage();
 
-  return !user
+  return !isLogined
     ? <Spinner />
     : <WordForm />;
 };

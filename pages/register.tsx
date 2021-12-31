@@ -4,13 +4,14 @@ import {
   Flex, Text, FormLabel, Alert, AlertIcon,
 } from '@chakra-ui/react';
 
-import { supabase } from '../utils/supabaseClient';
 import { Input } from '../components/Input';
 import { Button } from '../components/Button';
+import { useUser } from '../providers';
 
 // TODO: refactor to refer to the same JSX with login.tsx
 const Register = () => {
   const router = useRouter();
+  const { signUp } = useUser();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -18,7 +19,7 @@ const Register = () => {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const { error } = await supabase.auth.signUp({
+    const { error } = await signUp({
       email,
       password,
     });
