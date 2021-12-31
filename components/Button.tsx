@@ -8,9 +8,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) =>
 
   return (
     <Button1
+      colorScheme={isActive ? 'purple' : 'facebook'}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...buttonProps}
-      colorScheme={isActive ? 'purple' : 'facebook'}
       ref={ref}
     >
       {children}
