@@ -47,7 +47,6 @@ const Register = () => {
         </FormLabel>
         <Input
           isRequired
-          className="py-2 px-4 rounded-md focus:outline-none focus:ring-2"
           type="email"
           id="email"
           value={email}
@@ -59,7 +58,6 @@ const Register = () => {
         </FormLabel>
         <Input
           isRequired
-          className="py-2 px-4 rounded-md focus:outline-none focus:ring-2"
           type="password"
           id="password"
           value={password}
