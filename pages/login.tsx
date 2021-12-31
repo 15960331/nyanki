@@ -46,7 +46,7 @@ const Login = () => {
           Email
         </FormLabel>
         <Input
-          required
+          isRequired
           className="py-2 px-4 rounded-md focus:outline-none focus:ring-2"
           type="email"
           id="email"
@@ -58,7 +58,7 @@ const Login = () => {
           Password
         </FormLabel>
         <Input
-          required
+          isRequired
           className="py-2 px-4 rounded-md focus:outline-none focus:ring-2"
           type="password"
           id="password"
