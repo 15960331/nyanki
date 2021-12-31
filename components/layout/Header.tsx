@@ -2,7 +2,9 @@ import React from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Box, Menu, Text } from '@chakra-ui/react';
+import {
+  Flex, Box, Menu, Text, Spacer,
+} from '@chakra-ui/react';
 
 import { Button } from '../Button';
 
@@ -10,14 +12,14 @@ export const Header: NextPage = () => {
   const router = useRouter();
 
   return (
-    <Box
-      display="flex"
+    <Flex
       flexDirection="row"
       h="100%"
       alignItems="center"
+      mx={4}
     >
       <Link href="/" passHref>
-        <Text as="a" fontSize="3xl" color="white" marginX={6}>Nyanki</Text>
+        <Text as="a" fontSize="3xl" color="white" mr={4}>Nyanki</Text>
       </Link>
       <Menu>
         <Box mr={2}>
@@ -33,7 +35,16 @@ export const Header: NextPage = () => {
         <Link href="/difference" passHref>
           <Button isActive={router.pathname === '/difference'}>Difference</Button>
         </Link>
+        <Spacer />
+        <Box mr={2}>
+          <Link href="/login" passHref>
+            <Button isActive={router.pathname === '/login'}>Login</Button>
+          </Link>
+        </Box>
+        <Link href="/register" passHref>
+          <Button isActive={router.pathname === '/register'}>Register</Button>
+        </Link>
       </Menu>
-    </Box>
+    </Flex>
   );
 };
