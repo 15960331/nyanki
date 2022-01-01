@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { NextPage } from 'next';
-import { Flex, IconButton } from '@chakra-ui/react';
+import {
+  Flex, IconButton,
+  Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverTrigger,
+} from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
+import { Button } from 'components/Button';
 import { FormItem } from './types';
 import { Input } from '../Input';
 
@@ -12,6 +16,8 @@ type Props = {
 };
 
 export const Item: NextPage<Props> = ({ formItem, setItems }) => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
       if (el.id === formItem.id) {
@@ -40,6 +46,8 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
 
   const onClickDelete = () => {
     setItems((prev) => prev.filter((el) => el.id !== formItem.id));
+    // this is necessary to close popover unless it is the lastone
+    buttonRef.current?.blur();
   };
 
   // TODO: make this sortable
@@ -64,13 +72,33 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
         value={formItem.meaning}
         onChange={onChangeMeaning}
       />
-      <IconButton
-        colorScheme="red"
-        aria-label="delete item"
-        icon={<DeleteIcon />}
-        roundedLeft={0}
-        onClick={onClickDelete}
-      />
+      <Popover>
+        <PopoverTrigger>
+          <IconButton
+            colorScheme="red"
+            aria-label="delete item"
+            icon={<DeleteIcon />}
+            roundedLeft={0}
+          />
+        </PopoverTrigger>
+        <PopoverContent>
+          <PopoverArrow />
+          <PopoverBody>
+            Are you sure you want to delete?
+          </PopoverBody>
+          <PopoverFooter>
+            <Button
+              colorScheme="red"
+              size="sm"
+              isFullWidth
+              onClick={onClickDelete}
+              ref={buttonRef}
+            >
+              I am sure!!
+            </Button>
+          </PopoverFooter>
+        </PopoverContent>
+      </Popover>
     </Flex>
   );
 };
