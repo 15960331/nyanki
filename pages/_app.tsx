@@ -4,9 +4,9 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ChakraProvider } from '@chakra-ui/react';
 
-import { UserProvider } from '../providers';
-import { Layout } from '../components/layout';
-import '../styles/globals.css';
+import { UserProvider } from 'providers';
+import { Layout } from 'components/layout';
+import 'styles/globals.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>

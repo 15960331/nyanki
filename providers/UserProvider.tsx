@@ -2,18 +2,32 @@ import React, {
   createContext, useContext, useEffect, useMemo, useState,
 } from 'react';
 import { NextPage } from 'next';
-import { User, UserCredentials } from '@supabase/supabase-js';
+import {
+  ApiError, Provider, Session, User, UserCredentials,
+} from '@supabase/supabase-js';
 
-import { supabase } from '../utils/supabaseClient';
+import { supabase } from 'utils/supabaseClient';
 
-const defaultValue = {
-  signUp: (data: UserCredentials) => supabase.auth.signUp(data),
-  signIn: (data: UserCredentials) => supabase.auth.signIn(data),
-  signOut: () => supabase.auth.signOut(),
-  user: undefined as User | undefined,
+type UserProviderValue = {
+  signUp: (data: UserCredentials) => Promise<{
+    user: User | null;
+    session: Session | null;
+    error: ApiError | null;
+  }>
+  signIn: (data: UserCredentials) => Promise<{
+    session: Session | null;
+    user: User | null;
+    provider?: Provider;
+    url?: string | null;
+    error: ApiError | null;
+  }>
+  signOut: () => Promise<{
+    error: ApiError | null;
+  }>
+  user?: User,
 };
 
-const userContext = createContext(defaultValue);
+const userContext = createContext({} as UserProviderValue);
 
 type Props = {
   children: React.ReactNode;

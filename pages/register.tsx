@@ -4,9 +4,9 @@ import {
   Flex, Text, FormLabel, Alert, AlertIcon,
 } from '@chakra-ui/react';
 
-import { Input } from '../components/Input';
-import { Button } from '../components/Button';
-import { useUser } from '../providers';
+import { Input } from 'components/Input';
+import { Button } from 'components/Button';
+import { useUser } from 'providers';
 
 // TODO: refactor to refer to the same JSX with login.tsx
 const Register = () => {
