@@ -1,1 +1,2 @@
-export { arrangeIds } from './arrangeIds';
+export { arrangeOrders } from './arrangeOrders';
+export { getWords } from './getWords';

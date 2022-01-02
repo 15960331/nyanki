@@ -11,13 +11,13 @@ type Props = {
 export const AddRowButton: NextPage<Props> = ({ setItems }) => {
   const onClickAddRow = () => {
     setItems((prev) => {
-      const id = prev.length !== 0
-        ? Math.max(...prev.map((el) => el.id)) + 1
+      const order = prev.length !== 0
+        ? Math.max(...prev.map((el) => el.order)) + 1
         : 1;
 
       return ([
         ...prev,
-        { id, word: '', meaning: '' },
+        { order, word: '', meaning: '' },
       ]);
     });
   };

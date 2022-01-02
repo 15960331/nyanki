@@ -20,9 +20,9 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
-      if (el.id === formItem.id) {
+      if (el.order === formItem.order) {
         return {
-          id: el.id,
+          order: el.order,
           word: e.target.value,
           meaning: el.meaning,
         };
@@ -33,9 +33,9 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
 
   const onChangeMeaning = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
-      if (el.id === formItem.id) {
+      if (el.order === formItem.order) {
         return {
-          id: el.id,
+          order: el.order,
           word: el.word,
           meaning: e.target.value,
         };
@@ -45,7 +45,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
   };
 
   const onClickDelete = () => {
-    setItems((prev) => prev.filter((el) => el.id !== formItem.id));
+    setItems((prev) => prev.filter((el) => el.order !== formItem.order));
     // this is necessary to close popover unless it is the lastone
     buttonRef.current?.blur();
   };
@@ -57,7 +57,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
         maxW="50px"
         textAlign="center"
         roundedRight={0}
-        value={formItem.id}
+        value={formItem.order}
         isDisabled
       />
       <Input
