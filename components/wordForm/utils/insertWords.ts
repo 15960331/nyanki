@@ -2,7 +2,6 @@ import { supabase } from 'utils/supabaseClient';
 
 export const insertWords = async (
   user_id: string,
-  id: number,
   word: string,
   meaning: string,
 ) => {
@@ -10,7 +9,6 @@ export const insertWords = async (
     .from('word')
     .insert({
       user_id,
-      id,
       word,
       meaning,
     });

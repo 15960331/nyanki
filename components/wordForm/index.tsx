@@ -3,13 +3,12 @@ import { NextPage } from 'next';
 import { Box } from '@chakra-ui/react';
 
 import { FormItem } from './types';
-import { arrangeOrders, getMaxOrder, getWords } from './utils';
+import { getWords } from './utils';
 import { Item } from './item';
 import { AddButton } from './addButton';
 
 export const WordForm: NextPage = () => {
   const [items, setItems] = useState<FormItem[]>([]);
-  const [maxOrder, setMaxOrder] = useState(0);
 
   const getWordsThenSet = useCallback(async () => {
     const data = await getWords();
@@ -19,16 +18,6 @@ export const WordForm: NextPage = () => {
   useEffect(() => {
     getWordsThenSet();
   }, [getWordsThenSet]);
-
-  useEffect(() => {
-    if (items.length === 0) {
-      return;
-    }
-
-    setItems((prev) => arrangeOrders(prev));
-    setMaxOrder(getMaxOrder(items));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(items)]);
 
   return (
     <>
@@ -41,10 +30,7 @@ export const WordForm: NextPage = () => {
           />
         </Box>
       ))}
-      <AddButton
-        maxOrder={maxOrder}
-        getWordsThenSet={getWordsThenSet}
-      />
+      <AddButton getWordsThenSet={getWordsThenSet} />
     </>
   );
 };

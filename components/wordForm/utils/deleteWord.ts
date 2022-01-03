@@ -1,12 +1,10 @@
 import { supabase } from 'utils/supabaseClient';
 
-export const deleteWord = async (id: number, word: string, meaning: string) => {
+export const deleteWord = async (id: number) => {
   const { error } = await supabase
     .from('word')
     .delete()
-    .match({
-      id, word, meaning, // should match every column just in case
-    });
+    .eq('id', id);
 
   // TODO: consider how to handle, show errors
   if (error) {

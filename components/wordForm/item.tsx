@@ -48,7 +48,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) =
 
   const onClickDelete = async () => {
     // TODO: add loading animation
-    await deleteWord(formItem.id, formItem.word, formItem.meaning);
+    await deleteWord(formItem.id);
     getWordsThenSet();
 
     // this is necessary to close popover unless it is the lastone
