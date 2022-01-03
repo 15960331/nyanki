@@ -4,7 +4,7 @@ export const getWords = async () => {
   const { data, error } = await supabase
     .from('word')
     .select('*')
-    .order('order');
+    .order('id');
 
   if (error || !data) {
     return [];

@@ -1,5 +1,5 @@
 export type FormItem = {
-  order: number;
+  id: number;
   word: string;
   meaning: string;
 };

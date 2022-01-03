@@ -8,21 +8,23 @@ import { DeleteIcon } from '@chakra-ui/icons';
 
 import { Button } from 'components/Button';
 import { FormItem } from './types';
+import { deleteWord } from './utils';
 import { Input } from '../Input';
 
 type Props = {
   formItem: FormItem;
-  setItems: React.Dispatch<React.SetStateAction<FormItem[]>>
+  setItems: React.Dispatch<React.SetStateAction<FormItem[]>>;
+  getWordsThenSet: () => Promise<void>;
 };
 
-export const Item: NextPage<Props> = ({ formItem, setItems }) => {
+export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
-      if (el.order === formItem.order) {
+      if (el.id === formItem.id) {
         return {
-          order: el.order,
+          id: el.id,
           word: e.target.value,
           meaning: el.meaning,
         };
@@ -33,9 +35,9 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
 
   const onChangeMeaning = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
-      if (el.order === formItem.order) {
+      if (el.id === formItem.id) {
         return {
-          order: el.order,
+          id: el.id,
           word: el.word,
           meaning: e.target.value,
         };
@@ -44,8 +46,11 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
     }));
   };
 
-  const onClickDelete = () => {
-    setItems((prev) => prev.filter((el) => el.order !== formItem.order));
+  const onClickDelete = async () => {
+    // TODO: add loading animation
+    await deleteWord(formItem.id, formItem.word, formItem.meaning);
+    getWordsThenSet();
+
     // this is necessary to close popover unless it is the lastone
     buttonRef.current?.blur();
   };
@@ -57,7 +62,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
         maxW="50px"
         textAlign="center"
         roundedRight={0}
-        value={formItem.order}
+        value={formItem.id}
         isDisabled
       />
       <Input

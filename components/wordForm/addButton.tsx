@@ -11,7 +11,7 @@ import { insertWords } from './utils';
 
 type Props = {
   maxOrder: number;
-  getWordsThenSet: () => void;
+  getWordsThenSet: () => Promise<void>;
 };
 
 export const AddButton: NextPage<Props> = ({ maxOrder, getWordsThenSet }) => {

@@ -34,7 +34,11 @@ export const WordForm: NextPage = () => {
     <>
       {items.map((el, i) => (
         <Box mb={4} key={i.toString()}>
-          <Item formItem={el} setItems={setItems} />
+          <Item
+            formItem={el}
+            setItems={setItems}
+            getWordsThenSet={getWordsThenSet}
+          />
         </Box>
       ))}
       <AddButton
