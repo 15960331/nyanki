@@ -50,7 +50,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
     buttonRef.current?.blur();
   };
 
-  // TODO: make this sortable
+  // TODO: make this draggable
   return (
     <Flex>
       <Input
