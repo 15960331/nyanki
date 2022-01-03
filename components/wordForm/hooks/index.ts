@@ -1,0 +1,1 @@
+export { useDeleteWord } from './useDeleteWord';

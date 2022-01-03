@@ -8,7 +8,7 @@ import { DeleteIcon } from '@chakra-ui/icons';
 
 import { Button } from 'components/Button';
 import { FormItem } from './types';
-import { deleteWord } from './utils';
+import { useDeleteWord } from './hooks';
 import { Input } from '../Input';
 
 type Props = {
@@ -19,6 +19,7 @@ type Props = {
 
 export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const { loading, deleteWord } = useDeleteWord();
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
@@ -97,6 +98,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) =
               size="sm"
               isFullWidth
               onClick={onClickDelete}
+              isLoading={loading}
               ref={buttonRef}
             >
               I am sure!!
