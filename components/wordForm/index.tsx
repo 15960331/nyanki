@@ -5,19 +5,19 @@ import { Box } from '@chakra-ui/react';
 import { FormItem } from './types';
 import { arrangeOrders, getWords } from './utils';
 import { Item } from './item';
-import { AddRowButton } from './addRowButton';
+import { AddButton } from './addButton';
 
 export const WordForm: NextPage = () => {
   const [items, setItems] = useState<FormItem[]>([]);
 
-  const getWordsList = useCallback(async () => {
+  const getWordsThenSet = useCallback(async () => {
     const data = await getWords();
     setItems(data);
   }, [setItems]);
 
   useEffect(() => {
-    getWordsList();
-  }, [getWordsList]);
+    getWordsThenSet();
+  }, [getWordsThenSet]);
 
   useEffect(() => {
     setItems((prev) => arrangeOrders(prev));
@@ -31,7 +31,7 @@ export const WordForm: NextPage = () => {
           <Item formItem={el} setItems={setItems} />
         </Box>
       ))}
-      <AddRowButton setItems={setItems} />
+      <AddButton getWordsThenSet={getWordsThenSet} />
     </>
   );
 };
