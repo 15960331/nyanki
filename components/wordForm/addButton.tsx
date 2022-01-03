@@ -10,10 +10,11 @@ import { Form } from './form';
 import { insertWords } from './utils';
 
 type Props = {
+  maxOrder: number;
   getWordsThenSet: () => void;
 };
 
-export const AddButton: NextPage<Props> = ({ getWordsThenSet }) => {
+export const AddButton: NextPage<Props> = ({ maxOrder, getWordsThenSet }) => {
   const { user } = useUser();
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
@@ -25,7 +26,7 @@ export const AddButton: NextPage<Props> = ({ getWordsThenSet }) => {
       return;
     }
 
-    await insertWords(user.id, word, meaning);
+    await insertWords(user.id, maxOrder + 1, word, meaning);
     getWordsThenSet();
 
     // this is necessary to close popover
