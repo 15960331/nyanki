@@ -20,20 +20,19 @@ export const WordForm: NextPage = () => {
     getWordsThenSet();
   }, [getWordsThenSet]);
 
-  return loading
-    ? <Spinner />
-    : (
-      <>
-        {items.map((el, i) => (
-          <Box mb={4} key={i.toString()}>
-            <Item
-              formItem={el}
-              setItems={setItems}
-              getWordsThenSet={getWordsThenSet}
-            />
-          </Box>
-        ))}
-        <AddButton getWordsThenSet={getWordsThenSet} />
-      </>
-    );
+  return (
+    <>
+      {items.map((el, i) => (
+        <Box mb={4} key={i.toString()}>
+          <Item
+            formItem={el}
+            setItems={setItems}
+            getWordsThenSet={getWordsThenSet}
+          />
+        </Box>
+      ))}
+      <AddButton getWordsThenSet={getWordsThenSet} />
+      {loading && <Spinner />}
+    </>
+  );
 };
