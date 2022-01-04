@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
+
 import { supabase } from 'utils/supabaseClient';
 
 export const useDeleteWord = () => {
