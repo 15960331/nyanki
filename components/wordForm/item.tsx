@@ -8,7 +8,7 @@ import { DeleteIcon } from '@chakra-ui/icons';
 
 import { Button } from 'components/Button';
 import { FormItem } from './types';
-import { useDeleteWord } from './hooks';
+import { useUpdateWord, useDeleteWord } from './hooks';
 import { Input } from '../Input';
 
 type Props = {
@@ -19,7 +19,8 @@ type Props = {
 
 export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const { loading, deleteWord } = useDeleteWord();
+  const { updateWord } = useUpdateWord();
+  const { loading: deleteLoading, deleteWord } = useDeleteWord();
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
@@ -47,8 +48,12 @@ export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) =
     }));
   };
 
+  const onBlur = async () => {
+    await updateWord(formItem);
+    getWordsThenSet();
+  };
+
   const onClickDelete = async () => {
-    // TODO: add loading animation
     await deleteWord(formItem.id);
     getWordsThenSet();
 
@@ -71,12 +76,14 @@ export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) =
         rounded={0}
         value={formItem.word}
         onChange={onChangeWord}
+        onBlur={onBlur}
       />
       <Input
         placeholder="meaning"
         rounded={0}
         value={formItem.meaning}
         onChange={onChangeMeaning}
+        onBlur={onBlur}
       />
       <Popover>
         <PopoverTrigger>
@@ -98,7 +105,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) =
               size="sm"
               isFullWidth
               onClick={onClickDelete}
-              isLoading={loading}
+              isLoading={deleteLoading}
               ref={buttonRef}
             >
               I am sure!!
