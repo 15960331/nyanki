@@ -4,28 +4,23 @@ import {
   Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverTrigger,
 } from '@chakra-ui/react';
 
-import { useUser } from 'providers';
 import { Button } from 'components/Button';
 import { Form } from './form';
-import { insertWords } from './utils';
+import { useInsertWord } from './hooks';
 
 type Props = {
   getWordsThenSet: () => Promise<void>;
 };
 
 export const AddButton: NextPage<Props> = ({ getWordsThenSet }) => {
-  const { user } = useUser();
+  const { loading, insertWord } = useInsertWord();
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
   const buttonRef = useRef<HTMLButtonElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
 
   const onClickOk = async () => {
-    if (!user) {
-      return;
-    }
-
-    await insertWords(user.id, word, meaning);
+    await insertWord(word, meaning);
     getWordsThenSet();
 
     // this is necessary to close popover
@@ -62,6 +57,7 @@ export const AddButton: NextPage<Props> = ({ getWordsThenSet }) => {
             isFullWidth
             onClick={onClickOk}
             ref={buttonRef}
+            isLoading={loading}
           >
             OK
           </Button>
