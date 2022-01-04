@@ -3,17 +3,18 @@ import { NextPage } from 'next';
 import { Box } from '@chakra-ui/react';
 
 import { FormItem } from './types';
-import { getWords } from './utils';
+import { useGetWords } from './hooks';
 import { Item } from './item';
 import { AddButton } from './addButton';
 
 export const WordForm: NextPage = () => {
   const [items, setItems] = useState<FormItem[]>([]);
+  const { getWords } = useGetWords();
 
   const getWordsThenSet = useCallback(async () => {
     const data = await getWords();
     setItems(data);
-  }, [setItems]);
+  }, [getWords]);
 
   useEffect(() => {
     getWordsThenSet();
