@@ -5,7 +5,6 @@ import { Box, Spinner } from '@chakra-ui/react';
 import { supabase } from 'utils/supabaseClient';
 import { FormItem } from './types';
 import { useGetWords } from './hooks';
-import { arrangeOrders } from './utils';
 import { Item } from './item';
 import { AddButton } from './addButton';
 
@@ -15,7 +14,6 @@ export const WordForm: NextPage = () => {
 
   const getWordsThenSet = useCallback(async () => {
     const data = await getWords();
-    arrangeOrders(data);
     setItems(data);
   }, [getWords]);
 
@@ -35,11 +33,6 @@ export const WordForm: NextPage = () => {
       supabase.removeSubscription(autoSelect);
     };
   }, [getWordsThenSet]);
-
-  // useEffect(() => {
-  //   setItems((prev) => arrangeOrders(prev));
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [JSON.stringify(items)]);
 
   return (
     <>
