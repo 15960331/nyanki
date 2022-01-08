@@ -1,21 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
+
+import { useSelect } from 'hooks/useSelect';
 import { useDeleteAll } from 'hooks/useDeleteAll';
 import { useInsert } from 'hooks/useInsert';
 
 import { supabase } from 'utils/supabaseClient';
 import { FormItem } from '../types';
 import { getMaxId, areItemsValid, arrangeItems } from '../utils';
-import { useGetWords } from './useGetWords';
 
 export const useGetArrangedWords = () => {
   const [items, setItems] = useState<FormItem[]>([]);
   const [nextId, setNextId] = useState(1);
-  const { loading: getLoading, getWords } = useGetWords();
+  const { loading: selectLoading, select } = useSelect();
   const { loading: deleteLoading, deleteAll } = useDeleteAll();
   const { loading: insertLoading, insert } = useInsert();
 
   const getWordsThenSet = useCallback(async () => {
-    const data = await getWords();
+    const data = await select('word', 'id');
 
     if (!areItemsValid(data)) {
       await deleteAll('word');
@@ -24,7 +25,7 @@ export const useGetArrangedWords = () => {
     }
 
     setItems(data);
-  }, [deleteAll, getWords, insert]);
+  }, [select, deleteAll, insert]);
 
   useEffect(() => {
     getWordsThenSet();
@@ -52,6 +53,6 @@ export const useGetArrangedWords = () => {
     items,
     setItems,
     nextId,
-    loading: getLoading || deleteLoading || insertLoading,
+    loading: selectLoading || deleteLoading || insertLoading,
   } as const;
 };

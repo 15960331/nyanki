@@ -2,19 +2,18 @@ import { useCallback, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 
 import { supabase } from 'utils/supabaseClient';
-import { FormItem } from '../types';
 
-export const useGetWords = () => {
+export const useSelect = () => {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
 
-  const getWords = useCallback(async () => {
+  const select = useCallback(async (tableName: string, orderBy: string) => {
     setLoading(true);
 
     const { data, error } = await supabase
-      .from<FormItem>('word')
+      .from(tableName)
       .select('*')
-      .order('id');
+      .order(orderBy);
 
     if (error || !data) {
       toast({
@@ -31,5 +30,5 @@ export const useGetWords = () => {
     return data;
   }, [toast]);
 
-  return { loading, getWords } as const;
+  return { loading, select } as const;
 };
