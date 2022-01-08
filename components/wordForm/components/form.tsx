@@ -4,6 +4,7 @@ import { FormLabel } from '@chakra-ui/react';
 import { Input } from 'components/Input';
 
 type Props = {
+  id: number;
   word: string;
   meaning: string;
   setWord: React.Dispatch<React.SetStateAction<string>>;
@@ -12,7 +13,7 @@ type Props = {
 };
 
 export const Form: NextPage<Props> = ({
-  word, meaning, setWord, setMeaning, firstInputRef,
+  id, word, meaning, setWord, setMeaning, firstInputRef,
 }) => {
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWord(e.target.value);
@@ -24,6 +25,12 @@ export const Form: NextPage<Props> = ({
 
   return (
     <>
+      <FormLabel htmlFor="id">id</FormLabel>
+      <Input
+        id="id"
+        value={id}
+        isDisabled
+      />
       <FormLabel htmlFor="word">word</FormLabel>
       <Input
         id="word"

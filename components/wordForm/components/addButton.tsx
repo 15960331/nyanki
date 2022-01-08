@@ -42,6 +42,7 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
         <PopoverArrow />
         <PopoverBody>
           <Form
+            id={nextId}
             word={word}
             meaning={meaning}
             setWord={setWord}

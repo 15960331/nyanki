@@ -1,3 +1,3 @@
 export * from './areItemsValid';
-export * from './arrangeIds';
+export * from './arrangeItems';
 export * from './getMaxId';
