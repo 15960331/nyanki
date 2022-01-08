@@ -7,9 +7,9 @@ import {
 import { DeleteIcon } from '@chakra-ui/icons';
 
 import { Button } from 'components/Button';
-import { FormItem } from './types';
-import { useUpdateWord, useDeleteWord } from './hooks';
-import { Input } from '../Input';
+import { Input } from 'components/Input';
+import { FormItem } from '../types';
+import { useUpdateWord, useDeleteWord } from '../hooks';
 
 type Props = {
   formItem: FormItem;

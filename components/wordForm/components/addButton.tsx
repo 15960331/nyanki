@@ -5,8 +5,8 @@ import {
 } from '@chakra-ui/react';
 
 import { Button } from 'components/Button';
+import { useInsertWord } from '../hooks';
 import { Form } from './form';
-import { useInsertWord } from './hooks';
 
 type Props = {
   nextId: number;
