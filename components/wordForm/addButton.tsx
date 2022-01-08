@@ -8,7 +8,11 @@ import { Button } from 'components/Button';
 import { Form } from './form';
 import { useInsertWord } from './hooks';
 
-export const AddButton: NextPage = () => {
+type Props = {
+  nextId: number;
+};
+
+export const AddButton: NextPage<Props> = ({ nextId }) => {
   const { loading, insertWord } = useInsertWord();
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
@@ -16,7 +20,7 @@ export const AddButton: NextPage = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
 
   const onClickOk = async () => {
-    await insertWord(word, meaning);
+    await insertWord(nextId, word, meaning);
 
     // this is necessary to close popover
     buttonRef.current?.blur();

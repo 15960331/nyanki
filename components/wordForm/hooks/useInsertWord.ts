@@ -9,7 +9,7 @@ export const useInsertWord = () => {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
 
-  const insertWord = useCallback(async (word: string, meaning: string) => {
+  const insertWord = useCallback(async (id: number, word: string, meaning: string) => {
     if (!user?.id) {
       toast({
         status: 'error',
@@ -25,6 +25,7 @@ export const useInsertWord = () => {
       .from('word')
       .insert({
         user_id: user.id,
+        id,
         word,
         meaning,
       });

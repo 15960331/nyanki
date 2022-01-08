@@ -4,12 +4,14 @@ import { Box, Spinner } from '@chakra-ui/react';
 
 import { supabase } from 'utils/supabaseClient';
 import { FormItem } from './types';
+import { getMaxId } from './utils';
 import { useGetWords } from './hooks';
 import { Item } from './item';
 import { AddButton } from './addButton';
 
 export const WordForm: NextPage = () => {
   const [items, setItems] = useState<FormItem[]>([]);
+  const [nextId, setNextId] = useState(1);
   const { loading, getWords } = useGetWords();
 
   const getWordsThenSet = useCallback(async () => {
@@ -34,6 +36,11 @@ export const WordForm: NextPage = () => {
     };
   }, [getWordsThenSet]);
 
+  useEffect(() => {
+    setNextId(getMaxId(items) + 1);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(items)]);
+
   return (
     <>
       {items.map((el, i) => (
@@ -44,7 +51,7 @@ export const WordForm: NextPage = () => {
           />
         </Box>
       ))}
-      <AddButton />
+      <AddButton nextId={nextId} />
       {loading && <Spinner />}
     </>
   );

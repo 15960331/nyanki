@@ -1,2 +1,2 @@
-export { arrangeOrders } from './arrangeOrders';
-export { getMaxOrder } from './getMaxOrder';
+export * from './arrangeIds';
+export * from './getMaxId';
