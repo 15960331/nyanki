@@ -1,6 +1,6 @@
 import { FormItem } from '../types';
 
-export const areIdsValid = (items: FormItem[]) => {
+export const areItemsValid = (items: FormItem[]) => {
   if (items.length === 0) {
     return true;
   }
