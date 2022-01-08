@@ -25,9 +25,8 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
     setItems((prev) => prev.map((el) => {
       if (el.id === formItem.id) {
         return {
-          id: el.id,
+          ...el,
           word: e.target.value,
-          meaning: el.meaning,
         };
       }
       return el;
@@ -38,8 +37,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
     setItems((prev) => prev.map((el) => {
       if (el.id === formItem.id) {
         return {
-          id: el.id,
-          word: el.word,
+          ...el,
           meaning: e.target.value,
         };
       }
