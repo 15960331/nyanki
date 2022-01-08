@@ -14,10 +14,9 @@ import { Input } from '../Input';
 type Props = {
   formItem: FormItem;
   setItems: React.Dispatch<React.SetStateAction<FormItem[]>>;
-  getWordsThenSet: () => Promise<void>;
 };
 
-export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) => {
+export const Item: NextPage<Props> = ({ formItem, setItems }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { updateWord } = useUpdateWord();
   const { loading: deleteLoading, deleteWord } = useDeleteWord();
@@ -48,14 +47,12 @@ export const Item: NextPage<Props> = ({ formItem, setItems, getWordsThenSet }) =
     }));
   };
 
-  const onBlur = async () => {
-    await updateWord(formItem);
-    getWordsThenSet();
+  const onBlur = () => {
+    updateWord(formItem);
   };
 
   const onClickDelete = async () => {
     await deleteWord(formItem.id);
-    getWordsThenSet();
 
     // this is necessary to close popover unless it is the lastone
     buttonRef.current?.blur();

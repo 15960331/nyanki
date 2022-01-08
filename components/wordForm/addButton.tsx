@@ -8,11 +8,7 @@ import { Button } from 'components/Button';
 import { Form } from './form';
 import { useInsertWord } from './hooks';
 
-type Props = {
-  getWordsThenSet: () => Promise<void>;
-};
-
-export const AddButton: NextPage<Props> = ({ getWordsThenSet }) => {
+export const AddButton: NextPage = () => {
   const { loading, insertWord } = useInsertWord();
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
@@ -21,7 +17,6 @@ export const AddButton: NextPage<Props> = ({ getWordsThenSet }) => {
 
   const onClickOk = async () => {
     await insertWord(word, meaning);
-    getWordsThenSet();
 
     // this is necessary to close popover
     buttonRef.current?.blur();

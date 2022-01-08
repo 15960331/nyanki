@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import { Box, Spinner } from '@chakra-ui/react';
 
+import { supabase } from 'utils/supabaseClient';
 import { FormItem } from './types';
 import { useGetWords } from './hooks';
 import { Item } from './item';
@@ -20,6 +21,19 @@ export const WordForm: NextPage = () => {
     getWordsThenSet();
   }, [getWordsThenSet]);
 
+  useEffect(() => {
+    const autoSelect = supabase
+      .from('word')
+      .on('*', () => {
+        getWordsThenSet();
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeSubscription(autoSelect);
+    };
+  }, [getWordsThenSet]);
+
   return (
     <>
       {items.map((el, i) => (
@@ -27,11 +41,10 @@ export const WordForm: NextPage = () => {
           <Item
             formItem={el}
             setItems={setItems}
-            getWordsThenSet={getWordsThenSet}
           />
         </Box>
       ))}
-      <AddButton getWordsThenSet={getWordsThenSet} />
+      <AddButton />
       {loading && <Spinner />}
     </>
   );
