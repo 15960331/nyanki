@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { useSelect } from 'hooks/useSelect';
-import { useDeleteAll } from 'hooks/useDeleteAll';
+import { useDelete } from 'hooks/useDelete';
 import { useInsert } from 'hooks/useInsert';
 
 import { supabase } from 'utils/supabaseClient';
@@ -12,7 +12,7 @@ export const useGetArrangedWords = () => {
   const [items, setItems] = useState<FormItem[]>([]);
   const [nextId, setNextId] = useState(1);
   const { loading: selectLoading, select } = useSelect();
-  const { loading: deleteLoading, deleteAll } = useDeleteAll();
+  const { loading: deleteLoading, deleteAll } = useDelete();
   const { loading: insertLoading, insert } = useInsert();
 
   const getWordsThenSet = useCallback(async () => {

@@ -8,8 +8,9 @@ import { DeleteIcon } from '@chakra-ui/icons';
 
 import { Button } from 'components/Button';
 import { Input } from 'components/Input';
+import { useDelete } from 'hooks/useDelete';
 import { FormItem } from '../types';
-import { useUpdateWord, useDeleteWord } from '../hooks';
+import { useUpdateWord } from '../hooks';
 
 type Props = {
   formItem: FormItem;
@@ -19,7 +20,7 @@ type Props = {
 export const Item: NextPage<Props> = ({ formItem, setItems }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { updateWord } = useUpdateWord();
-  const { loading: deleteLoading, deleteWord } = useDeleteWord();
+  const { loading: deleteLoading, deleteRows } = useDelete();
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
@@ -50,7 +51,7 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
   };
 
   const onClickDelete = async () => {
-    await deleteWord(formItem.id);
+    await deleteRows('word', 'id', formItem.id);
 
     // this is necessary to close popover unless it is the lastone
     buttonRef.current?.blur();
