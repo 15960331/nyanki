@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Button } from 'components/Button';
-import { useInsertWord } from '../hooks';
+import { useInsert } from 'hooks/useInsert';
 import { Form } from './form';
 
 type Props = {
@@ -13,14 +13,14 @@ type Props = {
 };
 
 export const AddButton: NextPage<Props> = ({ nextId }) => {
-  const { loading, insertWord } = useInsertWord();
+  const { loading, insert } = useInsert();
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
   const buttonRef = useRef<HTMLButtonElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
 
   const onClickOk = async () => {
-    await insertWord(nextId, word, meaning);
+    await insert('word', [{ id: nextId, word, meaning }]);
 
     // this is necessary to close popover
     buttonRef.current?.blur();

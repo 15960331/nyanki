@@ -10,7 +10,7 @@ export const useInsert = () => {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
 
-  const insert = useCallback(async <T extends FormItem>(tableName: string, data: T[]) => {
+  const insert = useCallback(async <T extends Omit<FormItem, 'user_id'>>(tableName: string, data: T[]) => {
     if (!user?.id) {
       toast({
         status: 'error',
@@ -20,11 +20,20 @@ export const useInsert = () => {
       return;
     }
 
+    if (data.length === 0) {
+      return;
+    }
+
     setLoading(true);
+
+    const addedUserId = data.map((el) => ({
+      ...el,
+      user_id: user.id,
+    }));
 
     const { error } = await supabase
       .from(tableName)
-      .insert(data);
+      .insert(addedUserId);
 
     if (error) {
       toast({

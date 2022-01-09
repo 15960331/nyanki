@@ -16,7 +16,7 @@ export const useGetArrangedWords = () => {
   const { loading: insertLoading, insert } = useInsert();
 
   const getWordsThenSet = useCallback(async () => {
-    const data = await select('word', 'id');
+    const data: FormItem[] = await select('word', 'id');
 
     if (!areItemsValid(data)) {
       await deleteAll('word');
