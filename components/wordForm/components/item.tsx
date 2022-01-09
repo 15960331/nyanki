@@ -8,9 +8,9 @@ import { DeleteIcon } from '@chakra-ui/icons';
 
 import { Button } from 'components/Button';
 import { Input } from 'components/Input';
+import { useUpdate } from 'hooks/useUpdate';
 import { useDelete } from 'hooks/useDelete';
 import { FormItem } from '../types';
-import { useUpdateWord } from '../hooks';
 
 type Props = {
   formItem: FormItem;
@@ -19,7 +19,7 @@ type Props = {
 
 export const Item: NextPage<Props> = ({ formItem, setItems }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const { updateWord } = useUpdateWord();
+  const { update } = useUpdate();
   const { loading: deleteLoading, deleteRows } = useDelete();
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +47,8 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
   };
 
   const onBlur = () => {
-    updateWord(formItem);
+    // TODO: calls only when "word" or "meaning" are changed
+    update('word', formItem, 'id', formItem.id);
   };
 
   const onClickDelete = async () => {

@@ -2,22 +2,23 @@ import { useCallback, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 
 import { supabase } from 'utils/supabaseClient';
-import { FormItem } from '../types';
 
-export const useUpdateWord = () => {
+export const useUpdate = () => {
   const toast = useToast();
   const [loading, setLoading] = useState(false);
 
-  const updateWord = useCallback(async ({ id, word, meaning }: FormItem) => {
+  const update = useCallback(async (
+    tableName: string,
+    updateData: Object,
+    filterKeyName: string,
+    filterKeyValue: string | number,
+  ) => {
     setLoading(true);
 
     const { error } = await supabase
-      .from('word')
-      .update({
-        word,
-        meaning,
-      })
-      .eq('id', id);
+      .from(tableName)
+      .update(updateData)
+      .eq(filterKeyName, filterKeyValue);
 
     if (error) {
       toast({
@@ -30,5 +31,5 @@ export const useUpdateWord = () => {
     setLoading(false);
   }, [toast]);
 
-  return { loading, updateWord } as const;
+  return { loading, update } as const;
 };
