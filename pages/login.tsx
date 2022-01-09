@@ -6,7 +6,7 @@ import {
 
 import { Input } from 'components/Input';
 import { Button } from 'components/Button';
-import { useUser } from 'providers';
+import { useUser } from 'providers/userProvider';
 
 // TODO: refactor to refer to the same JSX with register.tsx
 const Login = () => {

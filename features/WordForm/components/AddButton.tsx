@@ -6,7 +6,7 @@ import {
 
 import { Button } from 'components/Button';
 import { useInsert } from 'hooks/useInsert';
-import { Form } from './form';
+import { Form } from './Form';
 
 type Props = {
   nextId: number;

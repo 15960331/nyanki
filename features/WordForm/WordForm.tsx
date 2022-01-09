@@ -2,8 +2,9 @@ import React from 'react';
 import { NextPage } from 'next';
 import { Box, Spinner } from '@chakra-ui/react';
 
-import { useGetArrangedWords } from './hooks';
-import { Item, AddButton } from './components';
+import { useGetArrangedWords } from './hooks/useGetArrangedWords';
+import { AddButton } from './components/AddButton';
+import { Item } from './components/Item';
 
 export const WordForm: NextPage = () => {
   const {

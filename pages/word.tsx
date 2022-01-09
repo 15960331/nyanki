@@ -3,7 +3,7 @@ import type { NextPage } from 'next/types';
 import { Spinner } from '@chakra-ui/react';
 
 import { useProtectPage } from 'hooks/useProtectPage';
-import { WordForm } from 'components/wordForm';
+import { WordForm } from 'features/WordForm';
 
 const Page: NextPage = () => {
   const { isLogined } = useProtectPage();

@@ -1,4 +1,4 @@
-import { FormItem } from '../types/formItem';
+import { FormItem } from '../types';
 
 export const getMaxId = (items: FormItem[]) => {
   if (items.length === 0) {

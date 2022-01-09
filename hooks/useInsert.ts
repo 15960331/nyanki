@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 
 import { supabase } from 'utils/supabaseClient';
-import { useUser } from 'providers';
-import { FormItem } from 'components/wordForm/types';
+import { useUser } from 'providers/userProvider';
+import { FormItem } from 'features/WordForm/types';
 
 export const useInsert = () => {
   const { user } = useUser();

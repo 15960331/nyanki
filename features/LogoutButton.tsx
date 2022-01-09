@@ -3,8 +3,8 @@ import { NextPage } from 'next/types';
 import { useRouter } from 'next/router';
 import { useToast } from '@chakra-ui/react';
 
-import { useUser } from 'providers';
-import { Button } from '../Button';
+import { useUser } from 'providers/userProvider';
+import { Button } from 'components/Button';
 
 export const LogoutButton: NextPage = () => {
   const router = useRouter();

@@ -6,9 +6,9 @@ import {
   Flex, Menu, Text, Spacer,
 } from '@chakra-ui/react';
 
-import { useUser } from 'providers';
+import { useUser } from 'providers/userProvider';
+import { LogoutButton } from 'features/LogoutButton';
 import { Button } from '../Button';
-import { LogoutButton } from '../logoutButton';
 
 export const Header: NextPage = () => {
   const router = useRouter();

@@ -6,7 +6,9 @@ import { useInsert } from 'hooks/useInsert';
 
 import { supabase } from 'utils/supabaseClient';
 import { FormItem } from '../types';
-import { getMaxId, areItemsValid, arrangeItems } from '../utils';
+import { areItemsValid } from '../utils/areItemsValid';
+import { arrangeItems } from '../utils/arrangeItems';
+import { getMaxId } from '../utils/getMaxId';
 
 export const useGetArrangedWords = () => {
   const [items, setItems] = useState<FormItem[]>([]);
