@@ -1,9 +1,35 @@
 import React from 'react';
 import type { NextPage } from 'next/types';
-import { Text } from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
+
+import { Card } from 'components/Card';
+import { BlueLink } from 'components/BlueLink';
 
 const Page: NextPage = () => (
-  <Text fontSize="6xl">Welcome to Nyanki!</Text>
+  <Stack spacing={5}>
+    <Card title="Welcome to Nyanki!" darkMode centerText>
+      Anki clone that works on browser.
+    </Card>
+
+    <Card title="What is this?">
+      <p>Nyanki is a webapp for remembering things.</p>
+      <p>You can make flashcards and check if you remembered them.</p>
+    </Card>
+
+    <Card title="What is the difference with Anki?">
+      <p>
+        As you can see, this webapp is made after
+        <BlueLink href="https://apps.ankiweb.net/"> Anki </BlueLink>
+        but I wanted it to be more easier to edit flashcards.
+      </p>
+    </Card>
+
+    <Card title="This sucks lol">
+      Nyanki is also an open source project so feel free to contribute on github.
+      <br />
+      <BlueLink href="https://github.com/Ra1ken/nyanki">nyanki - github</BlueLink>
+    </Card>
+  </Stack>
 );
 
 export default Page;
