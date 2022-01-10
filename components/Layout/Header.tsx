@@ -34,15 +34,6 @@ export const Header: NextPage = () => {
             Word
           </Button>
         </Link>
-        <Link href="/idiom" passHref>
-          <Button
-            mr={2}
-            isActive={router.pathname === '/idiom'}
-            disabled={!user}
-          >
-            Idiom
-          </Button>
-        </Link>
         <Link href="/difference" passHref>
           <Button
             isActive={router.pathname === '/difference'}
