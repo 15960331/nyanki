@@ -16,11 +16,11 @@ const Page: NextPage = () => (
       <p>You can make flashcards and check if you remembered them.</p>
     </Card>
 
-    <Card title="What is the difference with Anki?">
+    <Card title="What is different from Anki?">
       <p>
         As you can see, this webapp is made after
         <BlueLink href="https://apps.ankiweb.net/"> Anki </BlueLink>
-        but I wanted it to be more easier to edit flashcards.
+        but I wanted it to be easier to edit flashcards.
       </p>
     </Card>
 
