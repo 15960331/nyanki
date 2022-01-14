@@ -35,7 +35,7 @@ export const Card: NextPage<Props> = ({
       {children && (
         <>
           <Box py={1} />
-          <Text fontSize="xl">
+          <Text as="div" fontSize="xl">
             {children}
           </Text>
         </>
