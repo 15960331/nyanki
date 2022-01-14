@@ -15,7 +15,7 @@ export const useProtectPage = () => {
     }
 
     if (!user) {
-      router.push('/login');
+      router.push('/login_register');
     }
 
     setIsLogined(true);

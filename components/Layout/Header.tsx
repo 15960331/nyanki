@@ -48,23 +48,13 @@ export const Header: NextPage = () => {
         {user
           ? <LogoutButton />
           : (
-            <>
-              <Link href="/login" passHref>
-                <Button
-                  mr={2}
-                  isActive={router.pathname === '/login'}
-                >
-                  Login
-                </Button>
-              </Link>
-              <Link href="/register" passHref>
-                <Button
-                  isActive={router.pathname === '/register'}
-                >
-                  Register
-                </Button>
-              </Link>
-            </>
+            <Link href="/login_register" passHref>
+              <Button
+                isActive={router.pathname === '/login_register'}
+              >
+                Login / Register
+              </Button>
+            </Link>
           )}
       </Menu>
     </Flex>

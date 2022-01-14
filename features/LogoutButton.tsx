@@ -25,7 +25,7 @@ export const LogoutButton: NextPage = () => {
       return;
     }
 
-    router.push('/login');
+    router.push('/');
   };
 
   return (
