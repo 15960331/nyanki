@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import { Box, Spinner } from '@chakra-ui/react';
 
-import { useGetArrangedWords } from './hooks/useGetArrangedWords';
+import { useGetArrangedWords } from './api/useGetArrangedWords';
 import { AddButton } from './components/AddButton';
 import { Item } from './components/Item';
 

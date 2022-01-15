@@ -8,8 +8,8 @@ import { DeleteIcon } from '@chakra-ui/icons';
 
 import { Button } from 'components/Button';
 import { Input } from 'components/Input';
-import { useUpdate } from 'hooks/useUpdate';
-import { useDelete } from 'hooks/useDelete';
+import { useUpdate } from 'api/useUpdate';
+import { useDelete } from 'api/useDelete';
 import { FormItem } from '../types';
 
 type Props = {

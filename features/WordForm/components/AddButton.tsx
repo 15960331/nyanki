@@ -5,7 +5,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Button } from 'components/Button';
-import { useInsert } from 'hooks/useInsert';
+import { useInsert } from 'api/useInsert';
 import { Form } from './Form';
 
 type Props = {

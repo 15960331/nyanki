@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
-import { useSelect } from 'hooks/useSelect';
-import { useDelete } from 'hooks/useDelete';
-import { useInsert } from 'hooks/useInsert';
+import { useSelect } from 'api/useSelect';
+import { useDelete } from 'api/useDelete';
+import { useInsert } from 'api/useInsert';
 
 import { supabase } from 'utils/supabaseClient';
 import { FormItem } from '../types';
