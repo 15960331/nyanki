@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, memo } from 'react';
 import { NextPage } from 'next';
 import {
   Flex, IconButton,
@@ -17,7 +17,7 @@ type Props = {
   setItems: React.Dispatch<React.SetStateAction<FormItem[]>>;
 };
 
-export const Item: NextPage<Props> = ({ formItem, setItems }) => {
+export const Item: NextPage<Props> = memo(({ formItem, setItems }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { update } = useUpdate();
   const { loading: deleteLoading, deleteRows } = useDelete();
@@ -112,4 +112,4 @@ export const Item: NextPage<Props> = ({ formItem, setItems }) => {
       </Popover>
     </Flex>
   );
-};
+});
