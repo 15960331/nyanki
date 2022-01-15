@@ -6,11 +6,11 @@ import { useUser } from 'providers/userProvider';
 // TODO: add logic that goes back to a page you were at after logged in
 export const useProtectPage = () => {
   const router = useRouter();
-  const { user, loadedUser } = useUser();
+  const { user, loadingUser } = useUser();
   const [isLogined, setIsLogined] = useState(false);
 
   useEffect(() => {
-    if (!loadedUser) {
+    if (loadingUser) {
       return;
     }
 
@@ -19,7 +19,7 @@ export const useProtectPage = () => {
     }
 
     setIsLogined(true);
-  }, [user, router, loadedUser]);
+  }, [user, router, loadingUser]);
 
   return { isLogined } as const;
 };

@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import {
-  Flex, Menu, Text, Spacer,
+  Flex, Menu, Text, Spacer, Spinner,
 } from '@chakra-ui/react';
 
 import { useUser } from 'providers/userProvider';
@@ -12,7 +12,7 @@ import { Button } from '../Button';
 
 export const Header: NextPage = () => {
   const router = useRouter();
-  const { user } = useUser();
+  const { user, loadingUser } = useUser();
 
   return (
     <Flex
@@ -29,7 +29,7 @@ export const Header: NextPage = () => {
           <Button
             mr={2}
             isActive={router.pathname === '/word'}
-            disabled={!user}
+            disabled={loadingUser ? true : !user}
           >
             Word
           </Button>
@@ -37,7 +37,7 @@ export const Header: NextPage = () => {
         <Link href="/difference" passHref>
           <Button
             isActive={router.pathname === '/difference'}
-            disabled={!user}
+            disabled={loadingUser ? true : !user}
           >
             Difference
           </Button>
@@ -45,7 +45,8 @@ export const Header: NextPage = () => {
 
         <Spacer />
 
-        {user
+        {loadingUser && <Spinner />}
+        {!loadingUser && user
           ? <LogoutButton />
           : (
             <Link href="/login_register" passHref>

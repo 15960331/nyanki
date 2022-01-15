@@ -25,7 +25,7 @@ type UserProviderValue = {
     error: ApiError | null;
   }>
   user?: User;
-  loadedUser: boolean;
+  loadingUser: boolean;
 };
 
 const userContext = createContext({} as UserProviderValue);
@@ -35,14 +35,14 @@ type Props = {
 };
 
 export const UserProvider: NextPage<Props> = ({ children }) => {
-  const [loadedUser, setLoadedUser] = useState(false);
+  const [loadingUser, setLoadingUser] = useState(true);
   const [user, setUser] = useState<User>();
 
   useEffect(() => {
     const session = supabase.auth.session();
 
     setUser(session?.user ?? undefined);
-    setLoadedUser(true);
+    setLoadingUser(false);
 
     const { data: listener } = supabase.auth.onAuthStateChange(
       async (e, _session) => {
@@ -60,8 +60,8 @@ export const UserProvider: NextPage<Props> = ({ children }) => {
     signIn: (data: UserCredentials) => supabase.auth.signIn(data),
     signOut: () => supabase.auth.signOut(),
     user,
-    loadedUser,
-  }), [user, loadedUser]);
+    loadingUser,
+  }), [user, loadingUser]);
 
   return (
     <userContext.Provider value={value}>
