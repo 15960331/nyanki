@@ -62,7 +62,7 @@ export const Item: NextPage<Props> = memo(({ formItem, setItems }) => {
   return (
     <Flex>
       <Input
-        maxW="50px"
+        w="100px"
         textAlign="center"
         roundedRight={0}
         value={formItem.id}
