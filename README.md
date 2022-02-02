@@ -5,7 +5,6 @@ this is just a experimental project ig.
 ## for Devs
 1. Install Docker and clone this repo.
 2. Start docker then code on it. (VSCode + Remote Containers)
-3. Set your name and email on git on Docker.
-4. Create .env.local file at root then set those variables below
-  *  NEXT_PUBLIC_SUPABASE_URL=XXX
-  *  NEXT_PUBLIC_SUPABASE_ANON_KEY=XXX
+3. Create .env.local file at root then set those variables below
+  * NEXT_PUBLIC_SUPABASE_URL=XXX
+  * NEXT_PUBLIC_SUPABASE_ANON_KEY=XXX
