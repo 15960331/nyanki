@@ -14,8 +14,3 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 
 # [Optional] Uncomment if you want to install more global node packages
 # RUN su node -c "npm install -g <your-package-list -here>"
-
-RUN echo $GIT_USERNAME
-RUN echo $GIT_EMAIL
-# RUN git config --global user.name $GIT_USERNAME
-# RUN git config --global user.email $GIT_EMAIL
