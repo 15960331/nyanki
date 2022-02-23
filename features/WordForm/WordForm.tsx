@@ -23,6 +23,7 @@ export const WordForm: NextPage = memo(() => {
 
       <Box p={4} />
 
+      {/* TODO: Refactor this with flexbox + gap */}
       {items.map((el, i) => (
         <Box mb={4} key={i.toString()}>
           <Item

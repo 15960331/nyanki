@@ -12,6 +12,7 @@ const Page: NextPage = () => {
   return (
     <>
       <Card title="Word" centerText />
+
       <Box py={4} />
 
       {!isLogined
