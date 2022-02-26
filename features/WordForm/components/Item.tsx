@@ -10,11 +10,11 @@ import { Button } from 'components/Button';
 import { Input } from 'components/Input';
 import { useUpdate } from 'api/useUpdate';
 import { useDelete } from 'api/useDelete';
-import { FormItem } from '../types';
+import { WordItem } from 'types';
 
 type Props = {
-  formItem: FormItem;
-  setItems: React.Dispatch<React.SetStateAction<FormItem[]>>;
+  formItem: WordItem;
+  setItems: React.Dispatch<React.SetStateAction<WordItem[]>>;
 };
 
 export const Item: NextPage<Props> = memo(({ formItem, setItems }) => {

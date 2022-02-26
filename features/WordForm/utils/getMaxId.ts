@@ -1,6 +1,6 @@
-import { FormItem } from '../types';
+import { WordItem } from 'types';
 
-export const getMaxId = (items: FormItem[]) => {
+export const getMaxId = (items: WordItem[]) => {
   if (items.length === 0) {
     return 0;
   }
