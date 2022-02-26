@@ -13,7 +13,7 @@ type Props = {
 // TODO: add isActive prop so I can refactor Header comp
 // TODO: not sure if this should inherit Button props to allow specifing CSS
 export const LinkButton: NextPage<Props> = ({ href, children, disabled = false }) => (
-  <Link href={href} passHref>
+  <Link href={href}>
     <Button disabled={disabled}>
       {children}
     </Button>
