@@ -3,23 +3,32 @@ import type { NextPage } from 'next/types';
 import { Spinner, Box } from '@chakra-ui/react';
 
 import { Card } from 'components/Card';
+import { LinkButton } from 'components/LinkButton';
 import { useProtectPage } from 'hooks/useProtectPage';
-import { WordReview } from 'features/WordReview';
+import { WordReviewCard } from 'features/WordReviewCard';
 
 const Page: NextPage = () => {
   const { isLogined } = useProtectPage();
 
-  return (
-    <>
-      <Card title="Word" centerText />
+  return isLogined
+    ? (
+      <>
+        <Card title="Word - Review" centerText>
+          Review if you remembered them!
+        </Card>
 
-      <Box p={4} />
+        <Box p={4} />
 
-      {!isLogined
-        ? <Spinner />
-        : <WordReview />}
-    </>
-  );
+        <LinkButton href="/word/list">
+          Back to List
+        </LinkButton>
+
+        <Box p={4} />
+
+        <WordReviewCard />
+      </>
+    )
+    : <Spinner />;
 };
 
 export default Page;
