@@ -21,7 +21,7 @@ const Page: NextPage = () => {
         <WordForm />
       </>
     )
-    : <Spinner />
+    : <Spinner />;
 };
 
 export default Page;
