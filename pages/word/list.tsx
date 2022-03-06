@@ -9,16 +9,19 @@ import { WordForm } from 'features/WordForm';
 const Page: NextPage = () => {
   const { isLogined } = useProtectPage();
 
-  return (
-    <>
-      <Card title="Word" centerText />
-      <Box py={4} />
+  return isLogined
+    ? (
+      <>
+        <Card title="Word - List" centerText>
+          Edit your flash cards
+        </Card>
 
-      {!isLogined
-        ? <Spinner />
-        : <WordForm />}
-    </>
-  );
+        <Box py={4} />
+
+        <WordForm />
+      </>
+    )
+    : <Spinner />;
 };
 
 export default Page;

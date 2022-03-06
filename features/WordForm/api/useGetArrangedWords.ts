@@ -5,20 +5,20 @@ import { useDelete } from 'api/useDelete';
 import { useInsert } from 'api/useInsert';
 
 import { supabase } from 'utils/supabaseClient';
-import { FormItem } from '../types';
+import { WordItem } from 'types';
 import { areItemsValid } from '../utils/areItemsValid';
 import { arrangeItems } from '../utils/arrangeItems';
 import { getMaxId } from '../utils/getMaxId';
 
 export const useGetArrangedWords = () => {
-  const [items, setItems] = useState<FormItem[]>([]);
+  const [items, setItems] = useState<WordItem[]>([]);
   const [nextId, setNextId] = useState(1);
   const { loading: selectLoading, select } = useSelect();
   const { loading: deleteLoading, deleteAll } = useDelete();
   const { loading: insertLoading, insert } = useInsert();
 
   const getWordsThenSet = useCallback(async () => {
-    const data: FormItem[] = await select('word', 'id');
+    const data: WordItem[] = await select('word', 'id');
 
     if (!areItemsValid(data)) {
       await deleteAll('word');

@@ -7,9 +7,9 @@ import { useProtectPage } from 'hooks/useProtectPage';
 const Page: NextPage = () => {
   const { isLogined } = useProtectPage();
 
-  return !isLogined
-    ? <Spinner />
-    : <Text fontSize="6xl">Difference page</Text>;
+  return isLogined
+    ? <Text fontSize="6xl">Difference page</Text>
+    : <Spinner />;
 };
 
 export default Page;

@@ -25,10 +25,10 @@ export const Header: NextPage = () => {
         <Text as="a" fontSize="3xl" color="white" mr={4}>Nyanki</Text>
       </Link>
       <Menu>
-        <Link href="/word" passHref>
+        <Link href="/word/list" passHref>
           <Button
             mr={2}
-            isActive={router.pathname === '/word'}
+            isActive={router.pathname.startsWith('/word')}
             disabled={loadingUser ? true : !user}
           >
             Word
@@ -36,7 +36,7 @@ export const Header: NextPage = () => {
         </Link>
         <Link href="/difference" passHref>
           <Button
-            isActive={router.pathname === '/difference'}
+            isActive={router.pathname.startsWith('/difference')}
             disabled={loadingUser ? true : !user}
           >
             Difference

@@ -1,6 +1,6 @@
-import { FormItem } from '../types';
+import { WordItem } from 'types';
 
-export const areItemsValid = (items: FormItem[]) => {
+export const areItemsValid = (items: WordItem[]) => {
   if (items.length === 0) {
     return true;
   }

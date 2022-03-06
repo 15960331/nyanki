@@ -10,21 +10,21 @@ import { Button } from 'components/Button';
 import { Input } from 'components/Input';
 import { useUpdate } from 'api/useUpdate';
 import { useDelete } from 'api/useDelete';
-import { FormItem } from '../types';
+import { WordItem } from 'types';
 
 type Props = {
-  formItem: FormItem;
-  setItems: React.Dispatch<React.SetStateAction<FormItem[]>>;
+  wordItem: WordItem;
+  setItems: React.Dispatch<React.SetStateAction<WordItem[]>>;
 };
 
-export const Item: NextPage<Props> = memo(({ formItem, setItems }) => {
+export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { update } = useUpdate();
   const { loading: deleteLoading, deleteRows } = useDelete();
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
-      if (el.id === formItem.id) {
+      if (el.id === wordItem.id) {
         return {
           ...el,
           word: e.target.value,
@@ -36,7 +36,7 @@ export const Item: NextPage<Props> = memo(({ formItem, setItems }) => {
 
   const onChangeMeaning = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
-      if (el.id === formItem.id) {
+      if (el.id === wordItem.id) {
         return {
           ...el,
           meaning: e.target.value,
@@ -48,11 +48,11 @@ export const Item: NextPage<Props> = memo(({ formItem, setItems }) => {
 
   const onBlur = () => {
     // TODO: calls only when "word" or "meaning" are changed
-    update('word', formItem, 'id', formItem.id);
+    update('word', wordItem, 'id', wordItem.id);
   };
 
   const onClickDelete = async () => {
-    await deleteRows('word', 'id', formItem.id);
+    await deleteRows('word', 'id', wordItem.id);
 
     // this is necessary to close popover unless it is the lastone
     buttonRef.current?.blur();
@@ -65,20 +65,20 @@ export const Item: NextPage<Props> = memo(({ formItem, setItems }) => {
         w="100px"
         textAlign="center"
         roundedRight={0}
-        value={formItem.id}
+        value={wordItem.id}
         isDisabled
       />
       <Input
         placeholder="word"
         rounded={0}
-        value={formItem.word}
+        value={wordItem.word}
         onChange={onChangeWord}
         onBlur={onBlur}
       />
       <Input
         placeholder="meaning"
         rounded={0}
-        value={formItem.meaning}
+        value={wordItem.meaning}
         onChange={onChangeMeaning}
         onBlur={onBlur}
       />
