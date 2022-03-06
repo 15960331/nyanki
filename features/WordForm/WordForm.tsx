@@ -27,7 +27,7 @@ export const WordForm: NextPage = memo(() => {
       {items.map((el, i) => (
         <Box mb={4} key={i.toString()}>
           <Item
-            formItem={el}
+            wordItem={el}
             setItems={setItems}
           />
         </Box>

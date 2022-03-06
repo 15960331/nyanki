@@ -3,14 +3,14 @@ import { useToast } from '@chakra-ui/react';
 
 import { supabase } from 'utils/supabaseClient';
 import { useUser } from 'providers/userProvider';
-import { FormItem } from 'features/WordForm/types';
+import { WordItem } from 'types';
 
 export const useInsert = () => {
   const { user } = useUser();
   const toast = useToast();
   const [loading, setLoading] = useState(false);
 
-  const insert = useCallback(async <T extends Omit<FormItem, 'user_id'>>(tableName: string, data: T[]) => {
+  const insert = useCallback(async <T extends Omit<WordItem, 'user_id'>>(tableName: string, data: T[]) => {
     if (!user?.id) {
       toast({
         status: 'error',
