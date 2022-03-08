@@ -35,14 +35,6 @@ export const Header: NextPage = () => {
             Word
           </Button>
         </Link>
-        <Link href="/difference" passHref>
-          <Button
-            isActive={router.pathname.startsWith('/difference')}
-            disabled={loadingUser ? true : !user}
-          >
-            Difference
-          </Button>
-        </Link>
 
         <Spacer />
 
