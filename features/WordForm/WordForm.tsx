@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { NextPage } from 'next';
 import { Box, Spinner } from '@chakra-ui/react';
 
-import { LinkButton } from 'components/LinkButton';
 import { useGetArrangedWords } from './api/useGetArrangedWords';
 import { AddButton } from './components/AddButton';
 import { Item } from './components/Item';
