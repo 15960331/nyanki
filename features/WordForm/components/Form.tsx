@@ -15,6 +15,8 @@ type Props = {
 export const Form: NextPage<Props> = ({
   id, word, meaning, setWord, setMeaning, firstInputRef,
 }) => {
+  const labelColor = 'gray.700';
+
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWord(e.target.value);
   };
@@ -25,20 +27,20 @@ export const Form: NextPage<Props> = ({
 
   return (
     <>
-      <FormLabel htmlFor="id">id</FormLabel>
+      <FormLabel color={labelColor} htmlFor="id">id</FormLabel>
       <Input
         id="id"
         value={id}
         isDisabled
       />
-      <FormLabel htmlFor="word">word</FormLabel>
+      <FormLabel color={labelColor} htmlFor="word">word</FormLabel>
       <Input
         id="word"
         value={word}
         onChange={onChangeWord}
         ref={firstInputRef}
       />
-      <FormLabel htmlFor="meaning">meaning</FormLabel>
+      <FormLabel color={labelColor} htmlFor="meaning">meaning</FormLabel>
       <Input
         id="meaning"
         value={meaning}
