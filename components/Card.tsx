@@ -30,7 +30,7 @@ export const Card: NextPage<Props> = ({
       bg={bg}
       color={color}
       rounded={10}
-      boxShadow="0px 1px 4px rgba(0, 0, 0, 0.70)"
+      boxShadow="0px 1px 4px black"
     >
       <Heading>{title}</Heading>
       {children && (
