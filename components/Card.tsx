@@ -6,14 +6,14 @@ import {
 } from '@chakra-ui/react';
 
 type Props = {
-  title: string;
+  title?: string;
   children?: React.ReactNode;
   centerText?: boolean;
   darkMode?: boolean;
 };
 
 export const Card: NextPage<Props> = ({
-  title, children, centerText = false, darkMode = false,
+  title = '', children, centerText = false, darkMode = false,
 }) => {
   const bg: BackgroundProps['bg'] = darkMode
     ? 'blackAlpha.600'
@@ -21,7 +21,7 @@ export const Card: NextPage<Props> = ({
 
   const color: ColorProps['color'] = darkMode
     ? 'white'
-    : 'black';
+    : 'gray.800';
 
   return (
     <Box
@@ -30,6 +30,7 @@ export const Card: NextPage<Props> = ({
       bg={bg}
       color={color}
       rounded={10}
+      boxShadow="0px 1px 4px rgba(0, 0, 0, 0.70)"
     >
       <Heading>{title}</Heading>
       {children && (
