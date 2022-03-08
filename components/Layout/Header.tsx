@@ -10,6 +10,7 @@ import { useUser } from 'providers/userProvider';
 import { LogoutButton } from 'features/LogoutButton';
 import { Button } from '../Button';
 
+// TODO: put box-shadow
 export const Header: NextPage = () => {
   const router = useRouter();
   const { user, loadingUser } = useUser();
