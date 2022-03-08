@@ -10,6 +10,7 @@ import { useUser } from 'providers/userProvider';
 import { LogoutButton } from 'features/LogoutButton';
 import { Button } from '../Button';
 
+// TODO: put box-shadow
 export const Header: NextPage = () => {
   const router = useRouter();
   const { user, loadingUser } = useUser();
@@ -32,14 +33,6 @@ export const Header: NextPage = () => {
             disabled={loadingUser ? true : !user}
           >
             Word
-          </Button>
-        </Link>
-        <Link href="/difference" passHref>
-          <Button
-            isActive={router.pathname.startsWith('/difference')}
-            disabled={loadingUser ? true : !user}
-          >
-            Difference
           </Button>
         </Link>
 
