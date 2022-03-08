@@ -91,7 +91,7 @@ export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
             roundedLeft={0}
           />
         </PopoverTrigger>
-        <PopoverContent>
+        <PopoverContent color="gray.700">
           <PopoverArrow />
           <PopoverBody>
             Are you sure you want to delete?
