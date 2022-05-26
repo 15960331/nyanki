@@ -1,4 +1,4 @@
-[nyanki](https://nyanki.vercel.app) is a CRUD webapp works with [supabase](https://app.supabase.io/).
+[nyanki](https://nyanki.net) is a CRUD webapp works with [supabase](https://app.supabase.io/).
 
 this is just a experimental project ig.
 
