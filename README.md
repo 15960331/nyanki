@@ -1,6 +1,11 @@
 [nyanki](https://nyanki.net) is a CRUD webapp works with [supabase](https://app.supabase.io/).
 
-this is just a experimental project ig.
+## What is nyanki
+Nyanki is a webapp for remembering things.
+You can make flashcards and check if you remembered them.
+
+## What is different from Anki?
+As you can see, this webapp is made after Anki but I wanted it to be easier to edit flashcards.
 
 ## for Devs
 1. Install Docker and clone this repo.
