@@ -27,7 +27,7 @@ const Page: NextPage = () => (
     <Card title="This sucks lol">
       Nyanki is also an open source project so feel free to contribute on github.
       <br />
-      <BlueLink href="https://github.com/Ra1ken/nyanki">nyanki - github</BlueLink>
+      <BlueLink href="https://github.com/15960331/nyanki">nyanki - github</BlueLink>
     </Card>
   </Stack>
 );
