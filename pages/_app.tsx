@@ -11,8 +11,8 @@ import 'styles/globals.css';
 const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <title>Nyanki</title>
-      <meta name="description" content="Anki clone that works on browser" />
+      <title>Nyanki - Online flashcard maker</title>
+      <meta name="description" content="Online flashcard maker" />
       <link rel="icon" href="/favicon.ico" />
     </Head>
 

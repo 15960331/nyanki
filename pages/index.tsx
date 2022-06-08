@@ -8,7 +8,7 @@ import { BlueLink } from 'components/BlueLink';
 const Page: NextPage = () => (
   <Stack spacing={5}>
     <Card title="Welcome to Nyanki!" darkMode centerText>
-      Anki clone that works on browser.
+      Online flashcard maker.
     </Card>
 
     <Card title="What is this?">
