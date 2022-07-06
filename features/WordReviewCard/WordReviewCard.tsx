@@ -36,48 +36,46 @@ export const WordReviewCard: NextPage = memo(() => {
     return <Box>❔</Box>;
   };
 
-  // TODO: components/Card will have styling props
   if (loading) return <Spinner />;
 
   return (
-    <Box minWidth="80%">
-      <Card
-        title={remaining === 0
-          ? '🎉You are done, good job!🎉'
-          : currentWord?.word}
-        centerText
-        darkMode
-      >
-        <Flex direction="column" gap={4}>
-          {meaning()}
-          <Flex justifyContent="space-between" alignItems="center" gap={4}>
-            {isOpen
-              ? (
-                <Button
-                  onClick={onClickNext}
-                  disabled={remaining === 0}
-                >
-                  Next
-                </Button>
-              )
-              : (
-                <Button
-                  onClick={onClickOpen}
-                  disabled={remaining === 0}
-                >
-                  Open
-                </Button>
-              )}
-            {`remaining: ${remaining}`}
-            <Button
-              onClick={onClickReset}
-              colorScheme="green"
-            >
-              Reset
-            </Button>
-          </Flex>
+    <Card
+      title={remaining === 0
+        ? '🎉You are done, good job!🎉'
+        : currentWord?.word}
+      centerText
+      darkMode
+      width="80%"
+    >
+      <Flex direction="column" gap={4}>
+        {meaning()}
+        <Flex justifyContent="space-between" alignItems="center" gap={4}>
+          {isOpen
+            ? (
+              <Button
+                onClick={onClickNext}
+                disabled={remaining === 0}
+              >
+                Next
+              </Button>
+            )
+            : (
+              <Button
+                onClick={onClickOpen}
+                disabled={remaining === 0}
+              >
+                Open
+              </Button>
+            )}
+          {`remaining: ${remaining}`}
+          <Button
+            onClick={onClickReset}
+            colorScheme="green"
+          >
+            Reset
+          </Button>
         </Flex>
-      </Card>
-    </Box>
+      </Flex>
+    </Card>
   );
 });
