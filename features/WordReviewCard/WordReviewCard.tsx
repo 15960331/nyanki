@@ -37,48 +37,48 @@ export const WordReviewCard: NextPage = memo(() => {
   };
 
   // TODO: components/Card will have styling props
-  return loading
-    ? <Spinner />
-    : (
-      <Box minWidth="80%">
-        <Card
-          title={remaining === 0
-            ? '🎉You are done, good job!🎉'
-            : currentWord?.word}
-          centerText
-          darkMode
-        >
-          <Flex direction="column" gap={4}>
-            {meaning()}
+  if (loading) return <Spinner />;
 
-            <Flex justifyContent="space-between" gap={4}>
-              {isOpen
-                ? (
-                  <Button
-                    onClick={onClickNext}
-                    disabled={remaining === 0}
-                  >
-                    Next
-                  </Button>
-                )
-                : (
-                  <Button
-                    onClick={onClickOpen}
-                    disabled={remaining === 0}
-                  >
-                    Open
-                  </Button>
-                )}
-              {`remaining: ${remaining}`}
-              <Button
-                onClick={onClickReset}
-                colorScheme="green"
-              >
-                Reset
-              </Button>
-            </Flex>
+  return (
+    <Box minWidth="80%">
+      <Card
+        title={remaining === 0
+          ? '🎉You are done, good job!🎉'
+          : currentWord?.word}
+        centerText
+        darkMode
+      >
+        <Flex direction="column" gap={4}>
+          {meaning()}
+
+          <Flex justifyContent="space-between" gap={4}>
+            {isOpen
+              ? (
+                <Button
+                  onClick={onClickNext}
+                  disabled={remaining === 0}
+                >
+                  Next
+                </Button>
+              )
+              : (
+                <Button
+                  onClick={onClickOpen}
+                  disabled={remaining === 0}
+                >
+                  Open
+                </Button>
+              )}
+            {`remaining: ${remaining}`}
+            <Button
+              onClick={onClickReset}
+              colorScheme="green"
+            >
+              Reset
+            </Button>
           </Flex>
-        </Card>
-      </Box>
-    );
+        </Flex>
+      </Card>
+    </Box>
+  );
 });
