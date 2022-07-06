@@ -50,8 +50,7 @@ export const WordReviewCard: NextPage = memo(() => {
       >
         <Flex direction="column" gap={4}>
           {meaning()}
-
-          <Flex justifyContent="space-between" gap={4}>
+          <Flex justifyContent="space-between" alignItems="center" gap={4}>
             {isOpen
               ? (
                 <Button
