@@ -1,8 +1,7 @@
 import React from 'react';
 import { NextPage } from 'next';
 import {
-  BackgroundProps, ColorProps,
-  Box, Heading, Text,
+  BackgroundProps, ColorProps, Box, Heading, Text, BoxProps,
 } from '@chakra-ui/react';
 
 type Props = {
@@ -10,10 +9,10 @@ type Props = {
   children?: React.ReactNode;
   centerText?: boolean;
   darkMode?: boolean;
-};
+} & BoxProps;
 
 export const Card: NextPage<Props> = ({
-  title = '', children, centerText = false, darkMode = false,
+  title = '', children, centerText = false, darkMode = false, ...props
 }) => {
   const bg: BackgroundProps['bg'] = darkMode
     ? 'blackAlpha.600'
@@ -31,6 +30,8 @@ export const Card: NextPage<Props> = ({
       color={color}
       rounded={10}
       boxShadow="0px 1px 4px black"
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...props}
     >
       <Heading>{title}</Heading>
       {children && (
