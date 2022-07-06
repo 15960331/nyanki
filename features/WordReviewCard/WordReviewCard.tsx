@@ -4,7 +4,9 @@ import { Box, Flex, Spinner } from '@chakra-ui/react';
 
 import { Card } from 'components/Card';
 import { Button } from 'components/Button';
+
 import { useGetRandomWord } from './api/useGetRandomWord';
+import { OpenNextButton } from './components/OpenNextButton';
 
 export const WordReviewCard: NextPage = memo(() => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,24 +52,13 @@ export const WordReviewCard: NextPage = memo(() => {
       <Flex direction="column" gap={4}>
         {meaning()}
         <Flex justifyContent="space-between" alignItems="center" gap={4}>
-          {isOpen
-            ? (
-              <Button
-                onClick={onClickNext}
-                disabled={remaining === 0}
-              >
-                Next
-              </Button>
-            )
-            : (
-              <Button
-                onClick={onClickOpen}
-                disabled={remaining === 0}
-              >
-                Open
-              </Button>
-            )}
-          {`remaining: ${remaining}`}
+          <OpenNextButton
+            showNextButton={isOpen}
+            disabled={remaining === 0}
+            onClickOpen={onClickOpen}
+            onClickNext={onClickNext}
+          />
+          <span>{`remaining: ${remaining}`}</span>
           <Button
             onClick={onClickReset}
             colorScheme="green"
