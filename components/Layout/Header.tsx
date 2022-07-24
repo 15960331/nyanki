@@ -20,7 +20,7 @@ export const Header: NextPage = () => {
       flexDirection="row"
       h="100%"
       alignItems="center"
-      mx={4}
+      px={4}
     >
       <Link href="/" passHref>
         <Text as="a" fontSize="3xl" color="white" mr={4}>Nyanki</Text>
