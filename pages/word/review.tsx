@@ -20,7 +20,7 @@ const Page: NextPage = () => {
         <Box p={4} />
 
         <LinkButton href="/word/list">
-          Back to List
+          List
         </LinkButton>
 
         <Box p={4} />
