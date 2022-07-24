@@ -1,6 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next/types';
-import { Spinner, Box } from '@chakra-ui/react';
+import { Spinner, Flex } from '@chakra-ui/react';
 
 import { Card } from 'components/Card';
 import { LinkButton } from 'components/LinkButton';
@@ -12,21 +12,23 @@ const Page: NextPage = () => {
 
   return isLogined
     ? (
-      <>
+      <Flex
+        direction="column"
+        gap={4}
+        justifyContent="center"
+        alignItems="center"
+        width="100%"
+      >
         <Card title="Word - Review" centerText>
           Review if you remembered them!
         </Card>
-
-        <Box p={4} />
 
         <LinkButton href="/word/list">
           List
         </LinkButton>
 
-        <Box p={4} />
-
         <WordReviewCard />
-      </>
+      </Flex>
     )
     : <Spinner />;
 };
