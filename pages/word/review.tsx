@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import type { NextPage } from 'next/types';
 import { Spinner, Flex } from '@chakra-ui/react';
 
+import { Button } from 'components/Button';
 import { Card } from 'components/Card';
 import { LinkButton } from 'components/LinkButton';
 import { useProtectPage } from 'hooks/useProtectPage';
 import { WordReviewCard } from 'features/WordReviewCard';
 
 const Page: NextPage = () => {
+  const [isReverseMode, setIsReverseMode] = useState(false);
   const { isLogined } = useProtectPage();
+
+  const onClickSwitchMode = useCallback(() => {
+    setIsReverseMode((prev) => !prev);
+  }, []);
 
   if (!isLogined) return <Spinner />;
 
@@ -24,11 +30,22 @@ const Page: NextPage = () => {
         Review if you remembered them!
       </Card>
 
-      <LinkButton href="/word/list">
-        List
-      </LinkButton>
+      <Flex
+        gap={4}
+        justifyContent="center"
+        alignItems="center"
+      >
+        <LinkButton href="/word/list">
+          List
+        </LinkButton>
+        <Button onClick={onClickSwitchMode}>
+          {isReverseMode
+            ? 'Meaning -> Word'
+            : 'Word -> Meaning'}
+        </Button>
+      </Flex>
 
-      <WordReviewCard />
+      <WordReviewCard isReverseMode={isReverseMode} />
     </Flex>
   );
 };
