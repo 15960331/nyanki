@@ -10,27 +10,27 @@ import { WordReviewCard } from 'features/WordReviewCard';
 const Page: NextPage = () => {
   const { isLogined } = useProtectPage();
 
-  return isLogined
-    ? (
-      <Flex
-        direction="column"
-        gap={4}
-        justifyContent="center"
-        alignItems="center"
-        width="100%"
-      >
-        <Card title="Word - Review" centerText>
-          Review if you remembered them!
-        </Card>
+  if (!isLogined) return <Spinner />;
 
-        <LinkButton href="/word/list">
-          List
-        </LinkButton>
+  return (
+    <Flex
+      direction="column"
+      gap={4}
+      justifyContent="center"
+      alignItems="center"
+      width="100%"
+    >
+      <Card title="Word - Review" centerText>
+        Review if you remembered them!
+      </Card>
 
-        <WordReviewCard />
-      </Flex>
-    )
-    : <Spinner />;
+      <LinkButton href="/word/list">
+        List
+      </LinkButton>
+
+      <WordReviewCard />
+    </Flex>
+  );
 };
 
 export default Page;
