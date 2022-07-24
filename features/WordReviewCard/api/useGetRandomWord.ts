@@ -31,6 +31,7 @@ export const useGetRandomWord = () => {
   }, [fetchThenSetWords]);
 
   return {
+    // TODO: fix currentWord provides undefined when this hook is mounted
     currentWord: words[randomIndex],
     getNextWord,
     reset,
