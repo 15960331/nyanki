@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { NextPage } from 'next';
-import { Box, Spinner } from '@chakra-ui/react';
+import { Box, Flex, Spinner } from '@chakra-ui/react';
 
+import { Card } from 'components/Card';
 import { useGetArrangedWords } from './api/useGetArrangedWords';
 import { AddButton } from './components/AddButton';
 import { Item } from './components/Item';
@@ -12,18 +13,24 @@ export const WordForm: NextPage = memo(() => {
   } = useGetArrangedWords();
 
   return (
-    <>
-      {/* TODO: Refactor this with flexbox + gap */}
-      {items.map((el, i) => (
-        <Box mb={4} key={i.toString()}>
-          <Item
-            wordItem={el}
-            setItems={setItems}
-          />
-        </Box>
-      ))}
-      <AddButton nextId={nextId} />
+    <Card darkMode centerText>
+      <Flex
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+        gap={4}
+      >
+        {items.map((el) => (
+          <Box key={el.id}>
+            <Item
+              wordItem={el}
+              setItems={setItems}
+            />
+          </Box>
+        ))}
+        <AddButton nextId={nextId} />
+      </Flex>
       {loading && <Spinner />}
-    </>
+    </Card>
   );
 });

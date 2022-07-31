@@ -27,9 +27,7 @@ const Page: NextPage = () => {
           Review
         </LinkButton>
 
-        <Card darkMode centerText>
-          <WordForm />
-        </Card>
+        <WordForm />
       </Flex>
     )
     : <Spinner />;
