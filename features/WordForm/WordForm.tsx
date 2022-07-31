@@ -20,8 +20,8 @@ export const WordForm: NextPage = memo(() => {
         alignItems="center"
         gap={4}
       >
-        {items.map((el, i) => (
-          <Box key={i.toString()}>
+        {items.map((el) => (
+          <Box key={el.id}>
             <Item
               wordItem={el}
               setItems={setItems}
