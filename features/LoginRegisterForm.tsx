@@ -94,7 +94,7 @@ export const LoginRegisterForm: NextPage<Props> = memo(({ type }) => {
         <Button
           type="submit"
           mt={4}
-          isFullWidth
+          width="100%"
         >
           {type === 'login' ? 'Login' : 'Register'}
         </Button>
