@@ -20,7 +20,7 @@ type Props = {
 export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const { update } = useUpdate();
-  const { loading: deleteLoading, deleteRows } = useDelete();
+  const { loading: isDeleting, deleteRows } = useDelete();
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setItems((prev) => prev.map((el) => {
@@ -100,9 +100,9 @@ export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
             <Button
               colorScheme="red"
               size="sm"
-              isFullWidth
+              width="100%"
               onClick={onClickDelete}
-              isLoading={deleteLoading}
+              isLoading={isDeleting}
               ref={buttonRef}
             >
               I am sure!!

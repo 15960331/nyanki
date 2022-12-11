@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { NextPage } from 'next';
 import {
-  Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverTrigger,
+  Popover, PopoverArrow, PopoverBody, PopoverCloseButton,
+  PopoverContent, PopoverFooter, PopoverTrigger,
 } from '@chakra-ui/react';
 
 import { Button } from 'components/Button';
@@ -14,31 +15,43 @@ type Props = {
 
 export const AddButton: NextPage<Props> = ({ nextId }) => {
   const { loading, insert } = useInsert();
+
+  const [isOpen, setIsOpen] = useState(false);
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
-  const buttonRef = useRef<HTMLButtonElement>(null);
-  const firstInputRef = useRef<HTMLInputElement>(null);
+  const initialFocusRef = useRef<HTMLInputElement>(null);
 
-  const onClickOk = async () => {
-    await insert('word', [{ id: nextId, word, meaning }]);
-
-    // this is necessary to close popover
-    buttonRef.current?.blur();
+  const handleClickAdd = () => {
+    setIsOpen(true);
   };
 
-  const onClose = () => {
+  const handleClickOk = async () => {
+    await insert('word', [{ id: nextId, word, meaning }]);
+    setIsOpen(false);
+  };
+
+  const handleClickClose = () => {
+    setIsOpen(false);
+  };
+
+  const handleClose = () => {
     setWord('');
     setMeaning('');
   };
 
   return (
-    <Popover onClose={onClose} initialFocusRef={firstInputRef}>
+    <Popover
+      isOpen={isOpen}
+      initialFocusRef={initialFocusRef}
+      onClose={handleClose}
+    >
       <PopoverTrigger>
-        <Button>
+        <Button onClick={handleClickAdd}>
           Add
         </Button>
       </PopoverTrigger>
       <PopoverContent>
+        <PopoverCloseButton onClick={handleClickClose} color="gray.700" />
         <PopoverArrow />
         <PopoverBody>
           <Form
@@ -47,16 +60,15 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
             meaning={meaning}
             setWord={setWord}
             setMeaning={setMeaning}
-            firstInputRef={firstInputRef}
+            firstInputRef={initialFocusRef}
           />
         </PopoverBody>
         <PopoverFooter>
           <Button
             colorScheme="green"
             size="sm"
-            isFullWidth
-            onClick={onClickOk}
-            ref={buttonRef}
+            width="100%"
+            onClick={handleClickOk}
             isLoading={loading}
           >
             OK
