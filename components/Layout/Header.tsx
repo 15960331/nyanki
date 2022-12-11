@@ -23,7 +23,7 @@ export const Header: NextPage = () => {
       px={4}
     >
       <Link href="/" passHref>
-        <Text as="a" fontSize="3xl" color="white" mr={4}>Nyanki</Text>
+        <Text fontSize="3xl" color="white" mr={4}>Nyanki</Text>
       </Link>
       <Menu>
         <Link href="/word/list" passHref>
