@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { NextPage } from 'next';
 import {
   Popover, PopoverArrow, PopoverBody, PopoverCloseButton,
@@ -19,7 +19,17 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [word, setWord] = useState('');
   const [meaning, setMeaning] = useState('');
+  const [isOKButtonEnabled, setIsOKButtonDisabled] = useState(true);
   const initialFocusRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (word.length === 0 || meaning.length === 0) {
+      setIsOKButtonDisabled(true);
+      return;
+    }
+
+    setIsOKButtonDisabled(false);
+  }, [word, meaning])
 
   const handleClickAdd = () => {
     setIsOpen(true);
@@ -68,6 +78,7 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
             colorScheme="green"
             size="sm"
             width="100%"
+            disabled={isOKButtonEnabled}
             onClick={handleClickOk}
             isLoading={loading}
           >
