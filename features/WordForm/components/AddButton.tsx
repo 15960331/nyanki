@@ -48,7 +48,6 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
     setMeaning('');
   };
 
-  // TODO: Separate into different components
   return (
     <Popover
       isOpen={isOpen}
