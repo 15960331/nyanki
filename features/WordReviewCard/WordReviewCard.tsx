@@ -1,4 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
+import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
 import { Card } from 'components/Card';
@@ -11,7 +12,7 @@ type Props = {
   isReverseMode: boolean;
 };
 
-export const WordReviewCard: React.VFC<Props> = memo(({ isReverseMode }) => {
+export const WordReviewCard: NextPage<Props> = memo(({ isReverseMode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const {
     loading, currentWord, getNextWord, reset, remaining,
