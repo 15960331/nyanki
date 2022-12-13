@@ -38,13 +38,12 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
   const handleClickOk = async () => {
     await insert('word', [{ id: nextId, word, meaning }]);
     setIsOpen(false);
+    setWord('');
+    setMeaning('');
   };
 
   const handleClickClose = () => {
     setIsOpen(false);
-  };
-
-  const handleClose = () => {
     setWord('');
     setMeaning('');
   };
@@ -53,7 +52,6 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
     <Popover
       isOpen={isOpen}
       initialFocusRef={initialFocusRef}
-      onClose={handleClose}
     >
       <PopoverTrigger>
         <Button onClick={handleClickAdd}>
