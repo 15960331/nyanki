@@ -1,4 +1,4 @@
-import React, { useRef, memo } from 'react';
+import React, { memo } from 'react';
 import { NextPage } from 'next';
 import {
   Flex, IconButton,
@@ -12,13 +12,14 @@ import { useUpdate } from 'api/useUpdate';
 import { useDelete } from 'api/useDelete';
 import { WordItem } from 'types';
 
+import { DeleteButton } from './DeleteButton';
+
 type Props = {
   wordItem: WordItem;
   setItems: React.Dispatch<React.SetStateAction<WordItem[]>>;
 };
 
 export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
-  const buttonRef = useRef<HTMLButtonElement>(null);
   const { update } = useUpdate();
   const { loading: isDeleting, deleteRows } = useDelete();
 
@@ -51,11 +52,8 @@ export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
     update('word', wordItem, 'id', wordItem.id);
   };
 
-  const onClickDelete = async () => {
+  const handleConfirmDelete = async () => {
     await deleteRows('word', 'id', wordItem.id);
-
-    // this is necessary to close popover unless it is the lastone
-    buttonRef.current?.blur();
   };
 
   // TODO: make this draggable
@@ -82,34 +80,10 @@ export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
         onChange={onChangeMeaning}
         onBlur={onBlur}
       />
-      <Popover>
-        <PopoverTrigger>
-          <IconButton
-            colorScheme="red"
-            aria-label="delete item"
-            icon={<DeleteIcon />}
-            roundedLeft={0}
-          />
-        </PopoverTrigger>
-        <PopoverContent color="gray.700">
-          <PopoverArrow />
-          <PopoverBody>
-            Are you sure you want to delete?
-          </PopoverBody>
-          <PopoverFooter>
-            <Button
-              colorScheme="red"
-              size="sm"
-              width="100%"
-              onClick={onClickDelete}
-              isLoading={isDeleting}
-              ref={buttonRef}
-            >
-              I am sure!!
-            </Button>
-          </PopoverFooter>
-        </PopoverContent>
-      </Popover>
+      <DeleteButton
+        onConfirm={handleConfirmDelete}
+        isLoading={isDeleting}
+      />
     </Flex>
   );
 });

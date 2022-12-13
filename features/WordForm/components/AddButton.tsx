@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { NextPage } from 'next';
 import {
-  Popover, PopoverArrow, PopoverBody, PopoverCloseButton,
-  PopoverContent, PopoverFooter, PopoverTrigger,
+  Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverTrigger, useOutsideClick,
 } from '@chakra-ui/react';
 
 import { Button } from 'components/Button';
@@ -21,6 +20,12 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
   const [meaning, setMeaning] = useState('');
   const [isOKButtonEnabled, setIsOKButtonDisabled] = useState(true);
   const initialFocusRef = useRef<HTMLInputElement>(null);
+
+  const popoverRef = useRef<HTMLElement>(null);
+  useOutsideClick({
+    ref: popoverRef,
+    handler: () => setIsOpen(false),
+  })
 
   useEffect(() => {
     if (word.length === 0 || meaning.length === 0) {
@@ -42,12 +47,6 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
     setMeaning('');
   };
 
-  const handleClickClose = () => {
-    setIsOpen(false);
-    setWord('');
-    setMeaning('');
-  };
-
   return (
     <Popover
       isOpen={isOpen}
@@ -58,8 +57,7 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
           Add
         </Button>
       </PopoverTrigger>
-      <PopoverContent>
-        <PopoverCloseButton onClick={handleClickClose} color="gray.700" />
+      <PopoverContent ref={popoverRef} color="gray.700">
         <PopoverArrow />
         <PopoverBody>
           <Form
