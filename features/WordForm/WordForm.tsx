@@ -8,9 +8,7 @@ import { AddButton } from './components/AddButton';
 import { Item } from './components/Item';
 
 export const WordForm: NextPage = memo(() => {
-  const {
-    loading, items, setItems, nextId,
-  } = useGetArrangedWords();
+  const { loading, items, nextId } = useGetArrangedWords();
 
   return (
     <Card darkMode centerText>
@@ -22,10 +20,7 @@ export const WordForm: NextPage = memo(() => {
       >
         {items.map((item) => (
           <Box key={item.word_id}>
-            <Item
-              wordItem={item}
-              setItems={setItems}
-            />
+            <Item defaultWordItem={item} />
           </Box>
         ))}
         <AddButton nextId={nextId} />

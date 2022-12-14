@@ -53,7 +53,6 @@ export const useGetArrangedWords = () => {
 
   return {
     items,
-    setItems,
     nextId,
     loading: selectLoading || deleteLoading || insertLoading,
   } as const;
