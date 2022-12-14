@@ -20,11 +20,10 @@ export const WordForm: NextPage = memo(() => {
         alignItems="center"
         gap={4}
       >
-        {/* TODO: uses uuid as key */}
-        {items.map((el) => (
-          <Box key={el.id}>
+        {items.map((item) => (
+          <Box key={item.word_id}>
             <Item
-              wordItem={el}
+              wordItem={item}
               setItems={setItems}
             />
           </Box>
