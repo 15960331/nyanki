@@ -1,12 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { NextPage } from 'next';
-import {
-  Flex, IconButton,
-  Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverTrigger,
-} from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
+import { Flex } from '@chakra-ui/react';
 
-import { Button } from 'components/Button';
 import { Input } from 'components/Input';
 import { useUpdate } from 'api/useUpdate';
 import { useDelete } from 'api/useDelete';
@@ -15,45 +10,45 @@ import { WordItem } from 'types';
 import { DeleteButton } from './DeleteButton';
 
 type Props = {
-  wordItem: WordItem;
-  setItems: React.Dispatch<React.SetStateAction<WordItem[]>>;
+  defaultWordItem: WordItem;
 };
 
-export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
+export const Item: NextPage<Props> = memo(({ defaultWordItem }) => {
   const { update } = useUpdate();
   const { loading: isDeleting, deleteRows } = useDelete();
+  const [word, setWord] = useState(defaultWordItem.word);
+  const [meaning, setMeaning] = useState(defaultWordItem.meaning);
 
   const onChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setItems((prev) => prev.map((el) => {
-      if (el.id === wordItem.id) {
-        return {
-          ...el,
-          word: e.target.value,
-        };
-      }
-      return el;
-    }));
+    setWord(e.target.value);
   };
 
   const onChangeMeaning = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setItems((prev) => prev.map((el) => {
-      if (el.id === wordItem.id) {
-        return {
-          ...el,
-          meaning: e.target.value,
-        };
-      }
-      return el;
-    }));
+    setMeaning(e.target.value);
   };
 
-  const onBlur = () => {
-    // TODO: calls only when "word" or "meaning" are changed
-    update('word', wordItem, 'id', wordItem.id);
+  const onBlurWord = () => {
+    const trimmedWord = word.trim();
+    if (trimmedWord === "" || trimmedWord === defaultWordItem.word) {
+      setWord(defaultWordItem.word);
+      return;
+    };
+
+    update('word', { ...defaultWordItem, word: trimmedWord }, 'word_id', defaultWordItem.word_id);
+  };
+
+  const onBlurMeaning = () => {
+    const trimmedMeaning = meaning.trim();
+    if (trimmedMeaning === "" || trimmedMeaning === defaultWordItem.meaning) {
+      setMeaning(defaultWordItem.meaning);
+      return;
+    };
+
+    update('word', { ...defaultWordItem, meaning: trimmedMeaning }, 'word_id', defaultWordItem.word_id);
   };
 
   const handleConfirmDelete = async () => {
-    await deleteRows('word', 'id', wordItem.id);
+    await deleteRows('word', 'word_id', defaultWordItem.word_id);
   };
 
   // TODO: make this draggable
@@ -63,22 +58,22 @@ export const Item: NextPage<Props> = memo(({ wordItem, setItems }) => {
         w="100px"
         textAlign="center"
         roundedRight={0}
-        value={wordItem.id}
+        value={defaultWordItem.id}
         isDisabled
       />
       <Input
         placeholder="word"
         rounded={0}
-        value={wordItem.word}
+        value={word}
         onChange={onChangeWord}
-        onBlur={onBlur}
+        onBlur={onBlurWord}
       />
       <Input
         placeholder="meaning"
         rounded={0}
-        value={wordItem.meaning}
+        value={meaning}
         onChange={onChangeMeaning}
-        onBlur={onBlur}
+        onBlur={onBlurMeaning}
       />
       <DeleteButton
         onConfirm={handleConfirmDelete}
