@@ -10,10 +10,11 @@ import { WordItem } from 'types';
 import { DeleteButton } from './DeleteButton';
 
 type Props = {
+  index: number;
   defaultWordItem: WordItem;
 };
 
-export const Item: NextPage<Props> = memo(({ defaultWordItem }) => {
+export const Item: NextPage<Props> = memo(({ index, defaultWordItem }) => {
   const { update } = useUpdate();
   const { loading: isDeleting, deleteRows } = useDelete();
   const [word, setWord] = useState(defaultWordItem.word);
@@ -58,7 +59,7 @@ export const Item: NextPage<Props> = memo(({ defaultWordItem }) => {
         w="100px"
         textAlign="center"
         roundedRight={0}
-        value={defaultWordItem.id}
+        value={index}
         isDisabled
       />
       <Input
