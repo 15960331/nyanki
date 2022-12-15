@@ -1,59 +1,45 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import { useSelect } from 'api/useSelect';
-import { useDelete } from 'api/useDelete';
-import { useInsert } from 'api/useInsert';
 
 import { supabase } from 'utils/supabaseClient';
 import { WordItem } from 'types';
-import { areItemsValid } from '../utils/areItemsValid';
-import { arrangeItems } from '../utils/arrangeItems';
 import { getMaxId } from '../utils/getMaxId';
 
 export const useGetArrangedWords = () => {
   const [items, setItems] = useState<WordItem[]>([]);
   const [nextId, setNextId] = useState(1);
   const { loading: selectLoading, select } = useSelect();
-  const { loading: deleteLoading, deleteAll } = useDelete();
-  const { loading: insertLoading, insert } = useInsert();
 
-  const getWordsThenSet = useCallback(async () => {
+  const fetchWord = useCallback(async () => {
     const data: WordItem[] = await select('word', 'id');
-
-    if (!areItemsValid(data)) {
-      await deleteAll('word');
-      await insert('word', arrangeItems(data));
-      return;
-    }
-
     setItems(data);
-  }, [select, deleteAll, insert]);
+  }, [select]);
 
   useEffect(() => {
-    getWordsThenSet();
-  }, [getWordsThenSet]);
+    fetchWord();
+  }, [fetchWord]);
 
   useEffect(() => {
     const autoSelect = supabase
       .from('word')
       .on('*', () => {
-        getWordsThenSet();
+        fetchWord();
       })
       .subscribe();
 
     return () => {
       supabase.removeSubscription(autoSelect);
     };
-  }, [getWordsThenSet]);
+  }, [fetchWord]);
 
   useEffect(() => {
     setNextId(getMaxId(items) + 1);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(items)]);
+  }, [items]);
 
   return {
     items,
     nextId,
-    loading: selectLoading || deleteLoading || insertLoading,
+    loading: selectLoading,
   } as const;
 };
