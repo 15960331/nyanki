@@ -9,7 +9,7 @@ import { getMaxId } from '../utils/getMaxId';
 export const useGetArrangedWords = () => {
   const [items, setItems] = useState<WordItem[]>([]);
   const [nextId, setNextId] = useState(1);
-  const { loading: selectLoading, select } = useSelect();
+  const { loading, select } = useSelect();
 
   const fetchWord = useCallback(async () => {
     const data: WordItem[] = await select('word', 'id');
@@ -40,6 +40,6 @@ export const useGetArrangedWords = () => {
   return {
     items,
     nextId,
-    loading: selectLoading,
+    loading,
   } as const;
 };
