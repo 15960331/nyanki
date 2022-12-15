@@ -44,33 +44,5 @@ export const useDelete = () => {
     setLoading(false);
   }, [user?.id, toast]);
 
-  const deleteAll = useCallback(async (tableName: string) => {
-    if (!user?.id) {
-      toast({
-        status: 'error',
-        description: 'You are not logged in',
-        isClosable: true,
-      });
-      return;
-    }
-
-    setLoading(true);
-
-    const { error } = await supabase
-      .from(tableName)
-      .delete()
-      .eq('user_id', user.id);
-
-    if (error) {
-      toast({
-        status: 'error',
-        description: `${error.code} ${error.message}`,
-        isClosable: true,
-      });
-    }
-
-    setLoading(false);
-  }, [user?.id, toast]);
-
-  return { loading, deleteRows, deleteAll } as const;
+  return { loading, deleteRows } as const;
 };

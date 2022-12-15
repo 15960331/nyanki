@@ -18,9 +18,9 @@ export const WordForm: NextPage = memo(() => {
         alignItems="center"
         gap={4}
       >
-        {items.map((item) => (
+        {items.map((item, index) => (
           <Box key={item.word_id}>
-            <Item defaultWordItem={item} />
+            <Item index={index + 1} defaultWordItem={item} />
           </Box>
         ))}
         <AddButton nextId={nextId} />
