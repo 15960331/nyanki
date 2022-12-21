@@ -11,10 +11,6 @@ import { Item } from './components/Item';
 export const WordForm: NextPage = memo(() => {
   const { loading, items, nextId, fetchItems } = useGetItems();
 
-  const handleSubmit = () => {
-    fetchItems();
-  };
-
   return (
     <Card darkMode centerText>
       <Flex
@@ -25,10 +21,15 @@ export const WordForm: NextPage = memo(() => {
       >
         {items.map((item, index) => (
           <Box key={item.word_id}>
-            <Item index={index + 1} defaultWordItem={item} />
+            <Item 
+              index={index + 1}
+              defaultWordItem={item}
+              onUpdate={fetchItems}
+              onDelete={fetchItems}
+            />
           </Box>
         ))}
-        <AddButton nextId={nextId} onSubmit={handleSubmit} />
+        <AddButton nextId={nextId} onSubmit={fetchItems} />
       </Flex>
       {loading && <Spinner />}
     </Card>
