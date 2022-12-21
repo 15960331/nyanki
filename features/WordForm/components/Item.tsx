@@ -12,9 +12,11 @@ import { DeleteButton } from './DeleteButton';
 type Props = {
   index: number;
   defaultWordItem: WordItem;
+  onUpdate: () => void;
+  onDelete: () => void;
 };
 
-export const Item: NextPage<Props> = memo(({ index, defaultWordItem }) => {
+export const Item: NextPage<Props> = memo(({ index, defaultWordItem, onUpdate, onDelete }) => {
   const { update } = useUpdate();
   const { loading: isDeleting, deleteRows } = useDelete();
   const [word, setWord] = useState(defaultWordItem.word);
@@ -28,28 +30,31 @@ export const Item: NextPage<Props> = memo(({ index, defaultWordItem }) => {
     setMeaning(e.target.value);
   };
 
-  const onBlurWord = () => {
+  const onBlurWord = async () => {
     const trimmedWord = word.trim();
     if (trimmedWord === "" || trimmedWord === defaultWordItem.word) {
       setWord(defaultWordItem.word);
       return;
     };
 
-    update('word', { ...defaultWordItem, word: trimmedWord }, 'word_id', defaultWordItem.word_id);
+    await update('word', { ...defaultWordItem, word: trimmedWord }, 'word_id', defaultWordItem.word_id);
+    onUpdate();
   };
 
-  const onBlurMeaning = () => {
+  const onBlurMeaning = async () => {
     const trimmedMeaning = meaning.trim();
     if (trimmedMeaning === "" || trimmedMeaning === defaultWordItem.meaning) {
       setMeaning(defaultWordItem.meaning);
       return;
     };
 
-    update('word', { ...defaultWordItem, meaning: trimmedMeaning }, 'word_id', defaultWordItem.word_id);
+    await update('word', { ...defaultWordItem, meaning: trimmedMeaning }, 'word_id', defaultWordItem.word_id);
+    onUpdate();
   };
 
   const handleConfirmDelete = async () => {
     await deleteRows('word', 'word_id', defaultWordItem.word_id);
+    onDelete();
   };
 
   // TODO: make this draggable

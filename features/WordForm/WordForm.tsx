@@ -3,12 +3,13 @@ import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
 import { Card } from 'components/Card';
-import { useGetArrangedWords } from './api/useGetArrangedWords';
-import { AddButton } from './components/AddButton';
+import { AddButton } from 'components/organisms/AddButton';
+
+import { useGetItems } from './api/useGetItems';
 import { Item } from './components/Item';
 
 export const WordForm: NextPage = memo(() => {
-  const { loading, items, nextId } = useGetArrangedWords();
+  const { loading, items, nextId, fetchItems } = useGetItems();
 
   return (
     <Card darkMode centerText>
@@ -20,10 +21,15 @@ export const WordForm: NextPage = memo(() => {
       >
         {items.map((item, index) => (
           <Box key={item.word_id}>
-            <Item index={index + 1} defaultWordItem={item} />
+            <Item 
+              index={index + 1}
+              defaultWordItem={item}
+              onUpdate={fetchItems}
+              onDelete={fetchItems}
+            />
           </Box>
         ))}
-        <AddButton nextId={nextId} />
+        <AddButton nextId={nextId} onSubmit={fetchItems} />
       </Flex>
       {loading && <Spinner />}
     </Card>
