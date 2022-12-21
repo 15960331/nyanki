@@ -8,7 +8,11 @@ import { useGetArrangedWords } from './api/useGetArrangedWords';
 import { Item } from './components/Item';
 
 export const WordForm: NextPage = memo(() => {
-  const { loading, items, nextId } = useGetArrangedWords();
+  const { loading, items, nextId, fetchItems } = useGetArrangedWords();
+
+  const handleSubmit = () => {
+    fetchItems();
+  };
 
   return (
     <Card darkMode centerText>
@@ -23,7 +27,7 @@ export const WordForm: NextPage = memo(() => {
             <Item index={index + 1} defaultWordItem={item} />
           </Box>
         ))}
-        <AddButton nextId={nextId} />
+        <AddButton nextId={nextId} onSubmit={handleSubmit} />
       </Flex>
       {loading && <Spinner />}
     </Card>

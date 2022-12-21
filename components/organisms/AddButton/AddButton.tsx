@@ -9,9 +9,10 @@ import { AddForm } from './AddForm';
 
 type Props = {
   nextId: number;
+  onSubmit: () => void;
 };
 
-export const AddButton: NextPage<Props> = ({ nextId }) => {
+export const AddButton: NextPage<Props> = ({ nextId, onSubmit }) => {
   const [isOpen, setIsOpen] = useState(false);
   const initialFocusRef = useRef<HTMLInputElement>(null);
 
@@ -27,6 +28,7 @@ export const AddButton: NextPage<Props> = ({ nextId }) => {
 
   const handleSubmit = async () => {
     setIsOpen(false);
+    onSubmit();
   };
 
   return (
