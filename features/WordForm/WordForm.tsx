@@ -3,8 +3,8 @@ import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
 import { Card } from 'components/Card';
+import { AddButton } from 'components/organisms/AddButton';
 import { useGetArrangedWords } from './api/useGetArrangedWords';
-import { AddButton } from './components/AddButton';
 import { Item } from './components/Item';
 
 export const WordForm: NextPage = memo(() => {
