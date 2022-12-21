@@ -5,7 +5,7 @@ import { WordItem } from 'types';
 
 import { getMaxId } from '../utils/getMaxId';
 
-export const useGetArrangedWords = () => {
+export const useGetItems = () => {
   const [items, setItems] = useState<WordItem[]>([]);
   const [nextId, setNextId] = useState(1);
   const { loading, select } = useSelect();

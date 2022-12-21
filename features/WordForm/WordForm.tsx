@@ -4,11 +4,12 @@ import { Box, Flex, Spinner } from '@chakra-ui/react';
 
 import { Card } from 'components/Card';
 import { AddButton } from 'components/organisms/AddButton';
-import { useGetArrangedWords } from './api/useGetArrangedWords';
+
+import { useGetItems } from './api/useGetItems';
 import { Item } from './components/Item';
 
 export const WordForm: NextPage = memo(() => {
-  const { loading, items, nextId, fetchItems } = useGetArrangedWords();
+  const { loading, items, nextId, fetchItems } = useGetItems();
 
   const handleSubmit = () => {
     fetchItems();
