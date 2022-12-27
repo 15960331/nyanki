@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { Divider, FormLabel, Stack } from '@chakra-ui/react';
 
 import { useInsert } from 'api/useInsert';
-import { Input } from 'components/Input';
+import { Input } from 'components/atoms';
 import { Button } from 'components/Button';
 
 type Props = {
