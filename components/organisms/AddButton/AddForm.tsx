@@ -43,7 +43,7 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
     e.preventDefault();
 
     // TODO: make all functions in api hooks return boolean
-    await insert('word', [{ id, word, meaning }]);
+    await insert('word', [{ id, word: word.trim(), meaning: meaning.trim() }]);
 
     // TODO: make below lines get executed only if api request succeeded
     setWord('');
