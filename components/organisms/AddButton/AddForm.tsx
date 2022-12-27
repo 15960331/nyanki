@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { Divider, FormLabel, Stack } from '@chakra-ui/react';
 
 import { useInsert } from 'api/useInsert';
-import { Input } from 'components/Input';
+import { Input } from 'components/atoms';
 import { Button } from 'components/Button';
 
 type Props = {
@@ -43,7 +43,7 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
     e.preventDefault();
 
     // TODO: make all functions in api hooks return boolean
-    await insert('word', [{ id, word, meaning }]);
+    await insert('word', [{ id, word: word.trim(), meaning: meaning.trim() }]);
 
     // TODO: make below lines get executed only if api request succeeded
     setWord('');

@@ -5,7 +5,7 @@ import {
   Flex, FormLabel, Alert, AlertIcon, Box,
 } from '@chakra-ui/react';
 
-import { Input } from 'components/Input';
+import { Input } from 'components/atoms';
 import { Button } from 'components/Button';
 import { useUser } from 'providers/userProvider';
 

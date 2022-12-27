@@ -2,7 +2,7 @@ import React, { memo, useState } from 'react';
 import { NextPage } from 'next';
 import { Flex } from '@chakra-ui/react';
 
-import { Input } from 'components/Input';
+import { Input } from 'components/atoms';
 import { useUpdate } from 'api/useUpdate';
 import { useDelete } from 'api/useDelete';
 import { WordItem } from 'types';
