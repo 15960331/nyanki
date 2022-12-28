@@ -9,8 +9,15 @@ type Props = {
 
 // this is for opening a link in a new tab.
 export const BlueLink: NextPage<Props> = ({ href, children }) => (
-  <Box as="span" color="darkblue">
-    <a href={href} target="_blank" rel="noreferrer">
+  <Box
+    as="span"
+    color="darkblue"
+  >
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+    >
       {children}
     </a>
   </Box>

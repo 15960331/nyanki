@@ -6,7 +6,10 @@ import { Card } from 'components/atoms';
 import { LoginRegisterForm } from 'features/LoginRegisterForm';
 
 const Page: NextPage = () => (
-  <Stack spacing={10}>
+  <Stack
+    gap={10}
+    width="30%"
+  >
     <Card
       title="Login"
       centerText

@@ -19,8 +19,9 @@ export const Button = forwardRef<HTMLButtonElement, Props>(
   ({ isActive, children, ...props }, ref) => {
     return (
       <Button1
-        {...props}
+        // TODO: delete isActive
         colorScheme={isActive ? 'purple' : 'facebook'}
+        {...props}
         ref={ref}
       >
         {children}

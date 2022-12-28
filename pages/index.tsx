@@ -6,7 +6,7 @@ import { Card } from 'components/atoms/Card';
 import { BlueLink } from 'components/BlueLink';
 
 const Page: NextPage = () => (
-  <Stack spacing={5}>
+  <Stack gap={5}>
     <Card
       title="Welcome to Nyanki!"
       darkMode
@@ -28,7 +28,7 @@ const Page: NextPage = () => (
       </p>
     </Card>
 
-    <Card title="This sucks">
+    <Card title="This is so bad">
       Nyanki is also an open source project so feel free to contribute on github.
       <br />
       <BlueLink href="https://github.com/15960331/nyanki">nyanki - github</BlueLink>
