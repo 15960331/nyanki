@@ -18,7 +18,6 @@ type Props = {
 
 export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => (
   <Input1
-    // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
     variant="outline"
     color="gray.700"
