@@ -4,6 +4,7 @@ import { Divider, FormLabel, Stack } from '@chakra-ui/react';
 
 import { useInsert } from 'api/useInsert';
 import { Button, Input } from 'components/atoms';
+import { InputWithLabel } from 'components/molecules';
 
 type Props = {
   id: number;
@@ -55,47 +56,34 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
       autoComplete="off"
     >
       <Stack>
-        {/* TODO: implement molecules/InputWithLabel  */}
-        <div>
-          <FormLabel
-            color={LABEL_COLOR}
-            htmlFor="id"
-          >
-            id
-          </FormLabel>
-          <Input
-            id="id"
-            value={id}
-            isDisabled
-          />
-        </div>
-        <div>
-          <FormLabel
-            color={LABEL_COLOR}
-            htmlFor="word"
-          >
-            word
-          </FormLabel>
-          <Input
-            id="word"
-            value={word}
-            ref={firstInputRef}
-            onChange={handleChangeWord}
-          />
-        </div>
-        <div>
-          <FormLabel
-            color={LABEL_COLOR}
-            htmlFor="meaning"
-          >
-            meaning
-          </FormLabel>
-          <Input
-            id="meaning"
-            value={meaning}
-            onChange={handleChangeMeaning}
-          />
-        </div>
+        <InputWithLabel
+          id="id"
+          value={id}
+          isDisabled
+          labelProps={{
+            text: 'id',
+            color: LABEL_COLOR,
+          }}
+        />
+        <InputWithLabel
+          id="word"
+          value={word}
+          onChange={handleChangeWord}
+          labelProps={{
+            text: 'word',
+            color: LABEL_COLOR,
+          }}
+          ref={firstInputRef}
+        />
+        <InputWithLabel
+          id="meaning"
+          value={meaning}
+          onChange={handleChangeMeaning}
+          labelProps={{
+            text: 'meaning',
+            color: LABEL_COLOR,
+          }}
+        />
         <Divider />
         <Button
           colorScheme="green"
