@@ -1,10 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { NextPage } from 'next';
 import {
-  Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, useOutsideClick,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  useOutsideClick,
 } from '@chakra-ui/react';
 
-import { Button } from 'components/Button';
+import { Button } from 'components/atoms';
 import { AddForm } from './AddForm';
 
 type Props = {
@@ -20,7 +25,7 @@ export const AddButton: NextPage<Props> = ({ nextId, onSubmit }) => {
   useOutsideClick({
     ref: popoverRef,
     handler: () => setIsOpen(false),
-  })
+  });
 
   const handleClickAdd = () => {
     setIsOpen(true);
@@ -37,11 +42,12 @@ export const AddButton: NextPage<Props> = ({ nextId, onSubmit }) => {
       initialFocusRef={initialFocusRef}
     >
       <PopoverTrigger>
-        <Button onClick={handleClickAdd}>
-          Add
-        </Button>
+        <Button onClick={handleClickAdd}>Add</Button>
       </PopoverTrigger>
-      <PopoverContent ref={popoverRef} color="gray.700">
+      <PopoverContent
+        ref={popoverRef}
+        color="gray.700"
+      >
         <PopoverArrow />
         <PopoverBody>
           <AddForm

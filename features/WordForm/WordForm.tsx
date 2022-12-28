@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
-import { Card } from 'components/Card';
+import { Card } from 'components/atoms';
 import { AddButton } from 'components/organisms/AddButton';
 
 import { useGetItems } from './api/useGetItems';
@@ -12,7 +12,10 @@ export const WordForm: NextPage = memo(() => {
   const { loading, items, nextId, fetchItems } = useGetItems();
 
   return (
-    <Card darkMode centerText>
+    <Card
+      darkMode
+      centerText
+    >
       <Flex
         direction="column"
         justifyContent="center"
@@ -21,7 +24,7 @@ export const WordForm: NextPage = memo(() => {
       >
         {items.map((item, index) => (
           <Box key={item.word_id}>
-            <Item 
+            <Item
               index={index + 1}
               defaultWordItem={item}
               onUpdate={fetchItems}
@@ -29,7 +32,10 @@ export const WordForm: NextPage = memo(() => {
             />
           </Box>
         ))}
-        <AddButton nextId={nextId} onSubmit={fetchItems} />
+        <AddButton
+          nextId={nextId}
+          onSubmit={fetchItems}
+        />
       </Flex>
       {loading && <Spinner />}
     </Card>

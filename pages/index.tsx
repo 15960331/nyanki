@@ -2,12 +2,16 @@ import React from 'react';
 import type { NextPage } from 'next/types';
 import { Stack } from '@chakra-ui/react';
 
-import { Card } from 'components/Card';
+import { Card } from 'components/atoms/Card';
 import { BlueLink } from 'components/BlueLink';
 
 const Page: NextPage = () => (
   <Stack spacing={5}>
-    <Card title="Welcome to Nyanki!" darkMode centerText>
+    <Card
+      title="Welcome to Nyanki!"
+      darkMode
+      centerText
+    >
       Online flashcard maker.
     </Card>
 

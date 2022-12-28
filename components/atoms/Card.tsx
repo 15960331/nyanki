@@ -1,43 +1,45 @@
 import React from 'react';
 import { NextPage } from 'next';
-import {
-  BackgroundProps, ColorProps, Box, Heading, Text, BoxProps,
-} from '@chakra-ui/react';
+import { ColorProps, Box, Heading, Text, BoxProps } from '@chakra-ui/react';
 
 type Props = {
   title?: string;
   children?: React.ReactNode;
   centerText?: boolean;
   darkMode?: boolean;
-} & BoxProps;
+  width?: BoxProps['width'];
+};
 
 export const Card: NextPage<Props> = ({
-  title = '', children, centerText = false, darkMode = false, ...props
+  title = '',
+  children,
+  centerText = false,
+  darkMode = false,
+  ...props
 }) => {
-  const bg: BackgroundProps['bg'] = darkMode
+  const BACKGROUND_COLOR: BoxProps['backgroundColor'] = darkMode
     ? 'blackAlpha.600'
     : 'whiteAlpha.600';
-
-  const color: ColorProps['color'] = darkMode
-    ? 'white'
-    : 'gray.800';
+  const COLOR: ColorProps['color'] = darkMode ? 'white' : 'gray.800';
 
   return (
     <Box
       textAlign={centerText ? 'center' : 'left'}
-      p={4}
-      bg={bg}
-      color={color}
+      backgroundColor={BACKGROUND_COLOR}
+      color={COLOR}
+      padding={4}
       rounded={10}
       boxShadow="0px 1px 4px black"
-      // eslint-disable-next-line react/jsx-props-no-spreading
       {...props}
     >
       <Heading>{title}</Heading>
       {children && (
         <>
           <Box py={1} />
-          <Text as="div" fontSize="xl">
+          <Text
+            as="div"
+            fontSize="xl"
+          >
             {children}
           </Text>
         </>
