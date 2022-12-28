@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Flex, Menu, Text, Spacer, Spinner } from '@chakra-ui/react';
 
 import { Button } from 'components/atoms';
+import { LinkButton } from 'components/molecules';
 import { useUser } from 'providers/userProvider';
 import { LogoutButton } from 'features/LogoutButton';
 
@@ -33,18 +34,13 @@ export const Header: NextPage = () => {
         </Text>
       </Link>
       <Menu>
-        <Link
+        <LinkButton
           href="/word/list"
-          passHref
+          isActive={router.pathname.startsWith('/word')}
+          isDisabled={loadingUser ? true : !user}
         >
-          <Button
-            marginRight={2}
-            isActive={router.pathname.startsWith('/word')}
-            isDisabled={loadingUser ? true : !user}
-          >
-            Word
-          </Button>
-        </Link>
+          Word
+        </LinkButton>
 
         <Spacer />
 

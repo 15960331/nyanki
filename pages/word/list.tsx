@@ -3,7 +3,7 @@ import type { NextPage } from 'next/types';
 import { Spinner, Flex } from '@chakra-ui/react';
 
 import { Card } from 'components/atoms';
-import { LinkButton } from 'components/LinkButton';
+import { LinkButton } from 'components/molecules';
 import { useProtectPage } from 'hooks/useProtectPage';
 import { WordForm } from 'features/WordForm';
 
