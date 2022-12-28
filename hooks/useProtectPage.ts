@@ -7,6 +7,7 @@ import { useUser } from 'providers/userProvider';
 export const useProtectPage = () => {
   const router = useRouter();
   const { user, loadingUser } = useUser();
+  // TODO: fix typo
   const [isLogined, setIsLogined] = useState(false);
 
   useEffect(() => {
