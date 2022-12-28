@@ -3,7 +3,7 @@ import type { NextPage } from 'next/types';
 import { Spinner, Flex } from '@chakra-ui/react';
 
 import { Button } from 'components/Button';
-import { Card } from 'components/Card';
+import { Card } from 'components/atoms';
 import { LinkButton } from 'components/LinkButton';
 import { useProtectPage } from 'hooks/useProtectPage';
 import { WordReviewCard } from 'features/WordReviewCard';
@@ -26,7 +26,10 @@ const Page: NextPage = () => {
       alignItems="center"
       width="100%"
     >
-      <Card title="Word - Review" centerText>
+      <Card
+        title="Word - Review"
+        centerText
+      >
         Review if you remembered them!
       </Card>
 
@@ -35,13 +38,9 @@ const Page: NextPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <LinkButton href="/word/list">
-          List
-        </LinkButton>
+        <LinkButton href="/word/list">List</LinkButton>
         <Button onClick={onClickSwitchMode}>
-          {isReverseMode
-            ? 'Meaning -> Word'
-            : 'Word -> Meaning'}
+          {isReverseMode ? 'Meaning -> Word' : 'Word -> Meaning'}
         </Button>
       </Flex>
 

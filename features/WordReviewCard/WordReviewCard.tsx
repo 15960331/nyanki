@@ -2,7 +2,7 @@ import React, { memo, useCallback, useState } from 'react';
 import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
-import { Card } from 'components/Card';
+import { Card } from 'components/atoms';
 import { Button } from 'components/Button';
 
 import { useGetRandomWord } from './api/useGetRandomWord';
@@ -14,9 +14,7 @@ type Props = {
 
 export const WordReviewCard: NextPage<Props> = memo(({ isReverseMode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const {
-    loading, currentWord, getNextWord, reset, remaining,
-  } = useGetRandomWord();
+  const { loading, currentWord, getNextWord, reset, remaining } = useGetRandomWord();
 
   const onClickOpen = useCallback(() => {
     setIsOpen(true);
@@ -54,9 +52,16 @@ export const WordReviewCard: NextPage<Props> = memo(({ isReverseMode }) => {
       darkMode
       width="80%"
     >
-      <Flex direction="column" gap={4}>
+      <Flex
+        direction="column"
+        gap={4}
+      >
         <Box>{meaning()}</Box>
-        <Flex justifyContent="space-between" alignItems="center" gap={4}>
+        <Flex
+          justifyContent="space-between"
+          alignItems="center"
+          gap={4}
+        >
           <OpenNextButton
             showNextButton={isOpen}
             disabled={remaining === 0}
