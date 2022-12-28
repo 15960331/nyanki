@@ -3,8 +3,7 @@ import { NextPage } from 'next';
 import { Divider, FormLabel, Stack } from '@chakra-ui/react';
 
 import { useInsert } from 'api/useInsert';
-import { Input } from 'components/atoms';
-import { Button } from 'components/Button';
+import { Button, Input } from 'components/atoms';
 
 type Props = {
   id: number;
@@ -28,8 +27,7 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
     }
 
     setIsButtonDisabled(false);
-  }, [word, meaning])
-
+  }, [word, meaning]);
 
   const handleChangeWord = (e: React.ChangeEvent<HTMLInputElement>) => {
     setWord(e.target.value);
@@ -52,11 +50,19 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
   };
 
   return (
-    <form onSubmit={handleSubmit} autoComplete="off">
+    <form
+      onSubmit={handleSubmit}
+      autoComplete="off"
+    >
       <Stack>
         {/* TODO: implement molecules/InputWithLabel  */}
         <div>
-          <FormLabel color={LABEL_COLOR} htmlFor="id">id</FormLabel>
+          <FormLabel
+            color={LABEL_COLOR}
+            htmlFor="id"
+          >
+            id
+          </FormLabel>
           <Input
             id="id"
             value={id}
@@ -64,7 +70,12 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
           />
         </div>
         <div>
-          <FormLabel color={LABEL_COLOR} htmlFor="word">word</FormLabel>
+          <FormLabel
+            color={LABEL_COLOR}
+            htmlFor="word"
+          >
+            word
+          </FormLabel>
           <Input
             id="word"
             value={word}
@@ -73,7 +84,12 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
           />
         </div>
         <div>
-          <FormLabel color={LABEL_COLOR} htmlFor="meaning">meaning</FormLabel>
+          <FormLabel
+            color={LABEL_COLOR}
+            htmlFor="meaning"
+          >
+            meaning
+          </FormLabel>
           <Input
             id="meaning"
             value={meaning}
@@ -86,7 +102,7 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
           size="sm"
           width="100%"
           type="submit"
-          disabled={isButtonDisabled}
+          isDisabled={isButtonDisabled}
           isLoading={loading}
         >
           OK

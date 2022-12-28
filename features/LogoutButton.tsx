@@ -1,17 +1,17 @@
-import React, { MouseEventHandler } from 'react';
+import React, { MouseEvent } from 'react';
 import { NextPage } from 'next/types';
 import { useRouter } from 'next/router';
 import { useToast } from '@chakra-ui/react';
 
+import { Button } from 'components/atoms';
 import { useUser } from 'providers/userProvider';
-import { Button } from 'components/Button';
 
 export const LogoutButton: NextPage = () => {
   const router = useRouter();
   const { signOut } = useUser();
   const toast = useToast();
 
-  const onClick: MouseEventHandler = async (e) => {
+  const handleClick = async (e: MouseEvent) => {
     e.preventDefault();
 
     const { error } = await signOut();
@@ -31,7 +31,7 @@ export const LogoutButton: NextPage = () => {
   return (
     <Button
       colorScheme="red"
-      onClick={onClick}
+      onClick={handleClick}
     >
       Logout
     </Button>

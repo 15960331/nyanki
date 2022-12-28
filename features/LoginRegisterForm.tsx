@@ -1,12 +1,9 @@
 import React, { memo, useState } from 'react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import {
-  Flex, FormLabel, Alert, AlertIcon, Box,
-} from '@chakra-ui/react';
+import { Flex, FormLabel, Alert, AlertIcon, Box } from '@chakra-ui/react';
 
-import { Input } from 'components/atoms';
-import { Button } from 'components/Button';
+import { Button, Input } from 'components/atoms';
 import { useUser } from 'providers/userProvider';
 
 type Props = {
@@ -21,11 +18,11 @@ export const LoginRegisterForm: NextPage<Props> = memo(({ type }) => {
   const [errorMsg, setErrorMsg] = useState('');
   const [successEmail, setSuccessEmail] = useState('');
 
-  const onClickLogin = async (e: React.FormEvent) => {
+  const handleClickLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg('');
 
-    // TODO: add logic that redicets to a page specified in url query.
+    // TODO: add logic that redirects to a page specified in url query.
     // query is added by useProtectPage().
     // https://supabase.com/docs/reference/javascript/auth-signin#sign-in-with-redirect
     const { error } = await signIn({
@@ -42,7 +39,7 @@ export const LoginRegisterForm: NextPage<Props> = memo(({ type }) => {
     router.push('/');
   };
 
-  const onClickRegister = async (e: React.FormEvent) => {
+  const handleClickRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setSuccessEmail('');
     setErrorMsg('');
@@ -68,10 +65,8 @@ export const LoginRegisterForm: NextPage<Props> = memo(({ type }) => {
       justifyContent="center"
       alignItems="center"
     >
-      <form onSubmit={type === 'login' ? onClickLogin : onClickRegister}>
-        <FormLabel htmlFor="email">
-          Email
-        </FormLabel>
+      <form onSubmit={type === 'login' ? handleClickLogin : handleClickRegister}>
+        <FormLabel htmlFor="email">Email</FormLabel>
         <Input
           isRequired
           type="email"
@@ -80,7 +75,10 @@ export const LoginRegisterForm: NextPage<Props> = memo(({ type }) => {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <FormLabel htmlFor="password" mt={4}>
+        <FormLabel
+          htmlFor="password"
+          mt={4}
+        >
           Password
         </FormLabel>
         <Input
@@ -93,28 +91,34 @@ export const LoginRegisterForm: NextPage<Props> = memo(({ type }) => {
 
         <Button
           type="submit"
-          mt={4}
+          marginTop={4}
           width="100%"
         >
           {type === 'login' ? 'Login' : 'Register'}
         </Button>
       </form>
 
-      {errorMsg
-        && (
-          <Alert mt={8} status="error" textColor="blackAlpha.800">
-            <AlertIcon />
-            {errorMsg}
-          </Alert>
-        )}
-      {successEmail
-        && (
-          <Alert mt={8} status="success" textColor="blackAlpha.800">
-            <AlertIcon />
-            <span>We sent an email👉</span>
-            <Box textColor="purple.500">{successEmail}</Box>
-          </Alert>
-        )}
+      {errorMsg && (
+        <Alert
+          mt={8}
+          status="error"
+          textColor="blackAlpha.800"
+        >
+          <AlertIcon />
+          {errorMsg}
+        </Alert>
+      )}
+      {successEmail && (
+        <Alert
+          mt={8}
+          status="success"
+          textColor="blackAlpha.800"
+        >
+          <AlertIcon />
+          <span>We sent an email👉</span>
+          <Box textColor="purple.500">{successEmail}</Box>
+        </Alert>
+      )}
     </Flex>
   );
 });

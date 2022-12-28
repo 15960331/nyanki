@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from 'next';
 import { Link } from '@chakra-ui/react';
 
-import { Button } from 'components/Button';
+import { Button } from 'components/atoms';
 
 type Props = {
   href: string;
@@ -11,11 +11,9 @@ type Props = {
 };
 
 // TODO: add isActive prop so I can refactor Header comp
-// TODO: not sure if this should inherit Button props to allow specifing CSS
+// TODO: not sure if this should inherit Button props to allow specifying CSS
 export const LinkButton: NextPage<Props> = ({ href, children, disabled = false }) => (
   <Link href={href}>
-    <Button disabled={disabled}>
-      {children}
-    </Button>
+    <Button isDisabled={disabled}>{children}</Button>
   </Link>
 );

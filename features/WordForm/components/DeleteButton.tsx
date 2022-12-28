@@ -1,7 +1,16 @@
 import React, { memo, useRef, useState } from 'react';
 import { NextPage } from 'next';
-import { Button } from 'components/Button';
-import { IconButton, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverFooter, PopoverTrigger, useOutsideClick } from '@chakra-ui/react';
+import { Button } from 'components/atoms';
+import {
+  IconButton,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverFooter,
+  PopoverTrigger,
+  useOutsideClick,
+} from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 type Props = {
@@ -15,7 +24,7 @@ export const DeleteButton: NextPage<Props> = memo(({ isLoading, onConfirm }) => 
   useOutsideClick({
     ref: popoverRef,
     handler: () => setIsOpen(false),
-  })
+  });
 
   const handleClick = () => {
     setIsOpen(true);
@@ -37,11 +46,12 @@ export const DeleteButton: NextPage<Props> = memo(({ isLoading, onConfirm }) => 
           onClick={handleClick}
         />
       </PopoverTrigger>
-      <PopoverContent ref={popoverRef} color="gray.700">
+      <PopoverContent
+        ref={popoverRef}
+        color="gray.700"
+      >
         <PopoverArrow />
-        <PopoverBody>
-          Are you sure you want to delete?
-        </PopoverBody>
+        <PopoverBody>Are you sure you want to delete?</PopoverBody>
         <PopoverFooter>
           <Button
             colorScheme="red"

@@ -2,10 +2,9 @@ import React, { memo, useCallback, useState } from 'react';
 import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
-import { Card } from 'components/atoms';
-import { Button } from 'components/Button';
-
+import { Card, Button } from 'components/atoms';
 import { useGetRandomWord } from './api/useGetRandomWord';
+
 import { OpenNextButton } from './components/OpenNextButton';
 
 type Props = {
