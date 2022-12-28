@@ -1,9 +1,9 @@
 import React, { FormEvent, memo, useEffect, useState } from 'react';
 import { NextPage } from 'next';
-import { Divider, FormLabel, Stack } from '@chakra-ui/react';
+import { Divider, Stack } from '@chakra-ui/react';
 
 import { useInsert } from 'api/useInsert';
-import { Button, Input } from 'components/atoms';
+import { Button } from 'components/atoms';
 import { InputWithLabel } from 'components/molecules';
 
 type Props = {
