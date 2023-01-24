@@ -11,7 +11,8 @@ export const useGetItems = () => {
   const { loading, select } = useSelect();
 
   const fetchItems = useCallback(async () => {
-    const data: WordItem[] = await select('word', 'id');
+    const data = await select('word', 'id');
+    if (!data) return;
     setItems(data);
   }, [select]);
 
