@@ -6,45 +6,48 @@ import { useUser } from 'providers/userProvider';
 import { WordItem } from 'types';
 
 export const useInsert = () => {
+  // TODO: don't mount useUser in this hook
+  // but on components that use this hook
   const { user } = useUser();
+
   const toast = useToast();
   const [loading, setLoading] = useState(false);
 
-  const insert = useCallback(async <T extends Omit<WordItem, "word_id" | 'user_id'>>(tableName: string, data: T[]) => {
-    if (!user?.id) {
-      toast({
-        status: 'error',
-        description: 'You are not logged in',
-        isClosable: true,
-      });
-      return;
-    }
+  const insert = useCallback(
+    async <T extends Omit<WordItem, 'word_id' | 'user_id'>>(tableName: string, data: T[]) => {
+      if (!user) {
+        toast({
+          status: 'error',
+          description: 'You are not logged in',
+          isClosable: true,
+        });
+        return false;
+      }
 
-    if (data.length === 0) {
-      return;
-    }
+      setLoading(true);
 
-    setLoading(true);
+      const addedUserId = data.map((el) => ({
+        ...el,
+        user_id: user.id,
+      }));
 
-    const addedUserId = data.map((el) => ({
-      ...el,
-      user_id: user.id,
-    }));
+      const { error } = await supabase.from(tableName).insert(addedUserId);
 
-    const { error } = await supabase
-      .from(tableName)
-      .insert(addedUserId);
+      if (error) {
+        toast({
+          status: 'error',
+          description: `${error.code} ${error.message}`,
+          isClosable: true,
+        });
+        setLoading(false);
+        return false;
+      }
 
-    if (error) {
-      toast({
-        status: 'error',
-        description: `${error.code} ${error.message}`,
-        isClosable: true,
-      });
-    }
-
-    setLoading(false);
-  }, [toast, user?.id]);
+      setLoading(false);
+      return true;
+    },
+    [toast, user],
+  );
 
   return { loading, insert } as const;
 };

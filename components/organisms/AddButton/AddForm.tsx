@@ -41,10 +41,9 @@ export const AddForm: NextPage<Props> = memo(({ id, firstInputRef, onSubmit }) =
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // TODO: make all functions in api hooks return boolean
-    await insert('word', [{ id, word: word.trim(), meaning: meaning.trim() }]);
+    const result = await insert('word', [{ id, word: word.trim(), meaning: meaning.trim() }]);
+    if (!result) return;
 
-    // TODO: make below lines get executed only if api request succeeded
     setWord('');
     setMeaning('');
     onSubmit();
