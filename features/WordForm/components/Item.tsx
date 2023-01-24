@@ -37,12 +37,13 @@ export const Item: NextPage<Props> = memo(({ index, defaultWordItem, onUpdate, o
       return;
     }
 
-    await update(
+    const result = await update(
       'word',
       { ...defaultWordItem, word: trimmedWord },
       'word_id',
       defaultWordItem.word_id,
     );
+    if (!result) return;
     onUpdate();
   };
 
