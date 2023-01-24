@@ -32,28 +32,39 @@ export const Item: NextPage<Props> = memo(({ index, defaultWordItem, onUpdate, o
 
   const onBlurWord = async () => {
     const trimmedWord = word.trim();
-    if (trimmedWord === "" || trimmedWord === defaultWordItem.word) {
+    if (trimmedWord === '' || trimmedWord === defaultWordItem.word) {
       setWord(defaultWordItem.word);
       return;
-    };
+    }
 
-    await update('word', { ...defaultWordItem, word: trimmedWord }, 'word_id', defaultWordItem.word_id);
+    await update(
+      'word',
+      { ...defaultWordItem, word: trimmedWord },
+      'word_id',
+      defaultWordItem.word_id,
+    );
     onUpdate();
   };
 
   const onBlurMeaning = async () => {
     const trimmedMeaning = meaning.trim();
-    if (trimmedMeaning === "" || trimmedMeaning === defaultWordItem.meaning) {
+    if (trimmedMeaning === '' || trimmedMeaning === defaultWordItem.meaning) {
       setMeaning(defaultWordItem.meaning);
       return;
-    };
+    }
 
-    await update('word', { ...defaultWordItem, meaning: trimmedMeaning }, 'word_id', defaultWordItem.word_id);
+    await update(
+      'word',
+      { ...defaultWordItem, meaning: trimmedMeaning },
+      'word_id',
+      defaultWordItem.word_id,
+    );
     onUpdate();
   };
 
   const handleConfirmDelete = async () => {
-    await deleteRows('word', 'word_id', defaultWordItem.word_id);
+    const result = await deleteRows('word', 'word_id', defaultWordItem.word_id);
+    if (!result) return;
     onDelete();
   };
 

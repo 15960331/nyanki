@@ -9,40 +9,42 @@ export const useDelete = () => {
   const { user } = useUser();
   const [loading, setLoading] = useState(false);
 
-  const deleteRows = useCallback(async (
-    tableName: string,
-    filterKeyName: string,
-    filterKeyValue: string | number,
-  ) => {
-    if (!user?.id) {
-      toast({
-        status: 'error',
-        description: 'You are not logged in',
-        isClosable: true,
-      });
-      return;
-    }
+  const deleteRows = useCallback(
+    async (tableName: string, filterKeyName: string, filterKeyValue: string | number) => {
+      if (!user?.id) {
+        toast({
+          status: 'error',
+          description: 'You are not logged in',
+          isClosable: true,
+        });
+        return false;
+      }
 
-    setLoading(true);
+      setLoading(true);
 
-    const { error } = await supabase
-      .from(tableName)
-      .delete()
-      .match({
-        user_id: user.id,
-        [filterKeyName]: filterKeyValue,
-      });
+      const { error } = await supabase
+        .from(tableName)
+        .delete()
+        .match({
+          user_id: user.id,
+          [filterKeyName]: filterKeyValue,
+        });
 
-    if (error) {
-      toast({
-        status: 'error',
-        description: `${error.code} ${error.message}`,
-        isClosable: true,
-      });
-    }
+      if (error) {
+        toast({
+          status: 'error',
+          description: `${error.code} ${error.message}`,
+          isClosable: true,
+        });
+        setLoading(false);
+        return false;
+      }
 
-    setLoading(false);
-  }, [user?.id, toast]);
+      setLoading(false);
+      return true;
+    },
+    [user?.id, toast],
+  );
 
   return { loading, deleteRows } as const;
 };
