@@ -1,6 +1,4 @@
-import {
-  useState, useEffect, useCallback, useMemo,
-} from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 import { WordItem } from 'types';
 import { getRandomIndex } from 'utils/getRandomIndex';
@@ -12,7 +10,8 @@ export const useGetRandomWord = () => {
   const { loading, select } = useSelect();
 
   const fetchThenSetWords = useCallback(async () => {
-    const data: WordItem[] = await select('word', 'id');
+    const data = await select('word', 'id');
+    if (!data) return;
     setWords(data);
   }, [select]);
 
