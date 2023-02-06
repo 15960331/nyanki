@@ -3,10 +3,10 @@ import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
 import { Card } from 'components/atoms';
-import { AddButton } from 'components/organisms/AddButton';
 
 import { useGetItems } from './api/useGetItems';
 import { Item } from './components/Item';
+import { AddButton } from './components/AddButton';
 
 export const WordForm: NextPage = memo(() => {
   const { loading, items, nextId, fetchItems } = useGetItems();
