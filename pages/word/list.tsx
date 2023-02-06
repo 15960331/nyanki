@@ -8,9 +8,11 @@ import { useProtectPage } from 'hooks/useProtectPage';
 import { WordForm } from 'features/WordForm';
 
 const Page: NextPage = () => {
-  const { isLogined } = useProtectPage();
+  const { isLoggedIn } = useProtectPage();
 
-  return isLogined ? (
+  if (!isLoggedIn) return <Spinner />;
+
+  return (
     <Flex
       direction="column"
       gap={4}
@@ -29,8 +31,6 @@ const Page: NextPage = () => {
 
       <WordForm />
     </Flex>
-  ) : (
-    <Spinner />
   );
 };
 

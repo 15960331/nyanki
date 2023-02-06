@@ -9,13 +9,13 @@ import { WordReviewCard } from 'features/WordReviewCard';
 
 const Page: NextPage = () => {
   const [isReverseMode, setIsReverseMode] = useState(false);
-  const { isLogined } = useProtectPage();
+  const { isLoggedIn } = useProtectPage();
 
   const handleClick = useCallback(() => {
     setIsReverseMode((prev) => !prev);
   }, []);
 
-  if (!isLogined) return <Spinner />;
+  if (!isLoggedIn) return <Spinner />;
 
   return (
     <Flex

@@ -7,8 +7,7 @@ import { useUser } from 'providers/userProvider';
 export const useProtectPage = () => {
   const router = useRouter();
   const { user, loadingUser } = useUser();
-  // TODO: fix typo
-  const [isLogined, setIsLogined] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (loadingUser) {
@@ -19,8 +18,8 @@ export const useProtectPage = () => {
       router.push('/login_register');
     }
 
-    setIsLogined(true);
+    setIsLoggedIn(true);
   }, [user, router, loadingUser]);
 
-  return { isLogined } as const;
+  return { isLoggedIn } as const;
 };
