@@ -17,10 +17,11 @@ export const Layout: NextPage<Props> = ({ children }) => (
     <GridItem bg="gray.700">
       <Header />
     </GridItem>
-    <GridItem bg="gray.500" p="16px">
-      <Main>
-        {children}
-      </Main>
+    <GridItem
+      bg="gray.500"
+      p="16px"
+    >
+      <Main>{children}</Main>
     </GridItem>
   </Grid>
 );
