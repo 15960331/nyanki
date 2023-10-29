@@ -1,6 +1,6 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useRef } from 'react';
 import { NextPage } from 'next';
-import { Button } from 'components/atoms';
+import { DeleteIcon } from '@chakra-ui/icons';
 import {
   IconButton,
   Popover,
@@ -11,7 +11,9 @@ import {
   PopoverTrigger,
   useOutsideClick,
 } from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
+
+import { Button } from 'components/atoms';
+import { useDisclosure } from 'hooks/useDisclosure';
 
 type Props = {
   isLoading: boolean;
@@ -20,19 +22,16 @@ type Props = {
 
 export const DeleteButton: NextPage<Props> = memo(({ isLoading, onConfirm }) => {
   const popoverRef = useRef<HTMLElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, open, close } = useDisclosure();
+
   useOutsideClick({
     ref: popoverRef,
-    handler: () => setIsOpen(false),
+    handler: close,
   });
-
-  const handleClick = () => {
-    setIsOpen(true);
-  };
 
   const handleConfirm = () => {
     onConfirm();
-    setIsOpen(false);
+    close();
   };
 
   return (
@@ -43,7 +42,7 @@ export const DeleteButton: NextPage<Props> = memo(({ isLoading, onConfirm }) => 
           aria-label="delete item"
           icon={<DeleteIcon />}
           roundedLeft={0}
-          onClick={handleClick}
+          onClick={open}
         />
       </PopoverTrigger>
       <PopoverContent

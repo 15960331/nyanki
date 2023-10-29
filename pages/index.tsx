@@ -2,8 +2,8 @@ import React from 'react';
 import type { NextPage } from 'next/types';
 import { Stack } from '@chakra-ui/react';
 
-import { Card } from 'components/atoms/Card';
-import { BlueLink } from 'components/BlueLink';
+import { Card } from 'components/atoms';
+import { NewTabLink } from 'components/molecules';
 
 const Page: NextPage = () => (
   <Stack gap={5}>
@@ -23,7 +23,7 @@ const Page: NextPage = () => (
     <Card title="What is different from Anki?">
       <p>
         As you can see, this webapp is made after
-        <BlueLink href="https://apps.ankiweb.net/"> Anki </BlueLink>
+        <NewTabLink href="https://apps.ankiweb.net/"> Anki </NewTabLink>
         but I wanted it to be easier to edit flashcards.
       </p>
     </Card>
@@ -31,7 +31,7 @@ const Page: NextPage = () => (
     <Card title="This is so bad">
       Nyanki is also an open source project so feel free to contribute on github.
       <br />
-      <BlueLink href="https://github.com/15960331/nyanki">nyanki - github</BlueLink>
+      <NewTabLink href="https://github.com/15960331/nyanki">nyanki - github</NewTabLink>
     </Card>
   </Stack>
 );

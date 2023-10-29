@@ -7,8 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-// this is for opening a link in a new tab.
-export const BlueLink: NextPage<Props> = ({ href, children }) => (
+export const NewTabLink: NextPage<Props> = ({ href, children }) => (
   <Box
     as="span"
     color="darkblue"
