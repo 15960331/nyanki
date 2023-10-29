@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { NextPage } from 'next';
 import {
   Popover,
@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Button } from 'components/atoms';
+import { useDisclosure } from 'hooks/useDisclosure';
 import { AddForm } from './AddForm';
 
 type Props = {
@@ -18,21 +19,17 @@ type Props = {
 };
 
 export const AddButton: NextPage<Props> = ({ nextId, onSubmit }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const initialFocusRef = useRef<HTMLInputElement>(null);
+  const { isOpen, open, close } = useDisclosure();
 
   const popoverRef = useRef<HTMLElement>(null);
   useOutsideClick({
     ref: popoverRef,
-    handler: () => setIsOpen(false),
+    handler: close,
   });
 
-  const handleClickAdd = () => {
-    setIsOpen(true);
-  };
-
   const handleSubmit = async () => {
-    setIsOpen(false);
+    close();
     onSubmit();
   };
 
@@ -42,7 +39,7 @@ export const AddButton: NextPage<Props> = ({ nextId, onSubmit }) => {
       initialFocusRef={initialFocusRef}
     >
       <PopoverTrigger>
-        <Button onClick={handleClickAdd}>Add</Button>
+        <Button onClick={open}>Add</Button>
       </PopoverTrigger>
       <PopoverContent
         ref={popoverRef}

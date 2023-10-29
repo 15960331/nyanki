@@ -1,10 +1,11 @@
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback } from 'react';
 import { NextPage } from 'next';
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
 import { Card, Button } from 'components/atoms';
-import { useGetRandomWord } from './api/useGetRandomWord';
+import { useDisclosure } from 'hooks/useDisclosure';
 
+import { useGetRandomWord } from './api/useGetRandomWord';
 import { OpenNextButton } from './components/OpenNextButton';
 
 type Props = {
@@ -12,22 +13,18 @@ type Props = {
 };
 
 export const WordReviewCard: NextPage<Props> = memo(({ isReverseMode }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, open, close } = useDisclosure();
   const { loading, currentWord, getNextWord, reset, remaining } = useGetRandomWord();
 
-  const onClickOpen = useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
-  const onClickNext = useCallback(() => {
-    setIsOpen(false);
+  const handleNextClick = useCallback(() => {
+    close();
     getNextWord();
-  }, [getNextWord]);
+  }, [close, getNextWord]);
 
-  const onClickReset = useCallback(() => {
-    setIsOpen(false);
+  const handleResetClick = useCallback(() => {
+    close();
     reset();
-  }, [reset]);
+  }, [close, reset]);
 
   const word = useCallback(() => {
     if (remaining === 0) return '🎉You are done, good job!🎉';
@@ -64,12 +61,12 @@ export const WordReviewCard: NextPage<Props> = memo(({ isReverseMode }) => {
           <OpenNextButton
             showNextButton={isOpen}
             disabled={remaining === 0}
-            onClickOpen={onClickOpen}
-            onClickNext={onClickNext}
+            onClickOpen={open}
+            onClickNext={handleNextClick}
           />
           <span>{`remaining: ${remaining}`}</span>
           <Button
-            onClick={onClickReset}
+            onClick={handleResetClick}
             colorScheme="green"
           >
             Reset
